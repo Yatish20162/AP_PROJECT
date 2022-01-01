@@ -16,42 +16,25 @@ public class Hero extends GameObject{
     Hero(ImageView i, int x, int y, int widthx) {
 
         super(i, x, y, widthx);
-//        TranslateTransition jump=new TranslateTransition();
-//        jump.setNode(img);
-//        jump.setByY(-100);
-//        jump.setAutoReverse(false);
-//        jump.play();
-
         jump=new TranslateTransition();
         fall=new TranslateTransition();
         jump.setNode(img);
-        jump.setDuration(Duration.millis(5000));
+        jump.setDuration(Duration.millis(1000));
         jump.setByY(-100);
-
-
+        jump.setCycleCount(1);
 
         fall.setNode(img);
-        fall.setDuration(Duration.millis(5000));
-        fall.setByY(100);
-
-
-
-        jump.setOnFinished(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println(" jumppp ");
-                fall.play();
-            }
+        fall.setDuration(Duration.millis(1000));
+        fall.setByY(1);
+        jump.setOnFinished(event -> {
+            System.out.println(" jumppp " + img.getX()+" "+img.getY());
+            fall.play();
         });
-
-        fall.play();
 
     }
 
     void animate(boolean flag)
     {
-
         if(flag)
         {
             fall.pause();
@@ -61,9 +44,6 @@ public class Hero extends GameObject{
         {
             fall.play();
         }
-
-
-
     }
 
 

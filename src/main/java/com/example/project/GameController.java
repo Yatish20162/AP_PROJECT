@@ -145,7 +145,7 @@ public class GameController {
 
 
 
-        int numIslands = 90;
+        int numIslands = 10;
 
         int picker = ran.nextInt(10);
         int orcpicker=ran.nextInt(5);
