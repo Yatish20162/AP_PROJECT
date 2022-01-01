@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import javafx.animation.Animation;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -23,6 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -45,13 +47,14 @@ public class GameController {
     @FXML // fx:id="willhero"
     private ImageView willhero; // Value injected by FXMLLoader
 
+    ArrayList<GameObject> gamearray=new ArrayList<GameObject>();
+
+
 
     public int randomx(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);
     }
-    public int randomy(int min, int max) {
-        return (int) ((Math.random() * (max - min)) + min);
-    }
+
 
 
     @FXML
@@ -63,8 +66,8 @@ public class GameController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
     }
+
     void move()
     {
         // if conditions required on the basis of the island clash
@@ -76,7 +79,6 @@ public class GameController {
         transition.setAutoReverse(true);
         transition.setByY(-100);
         transition.play();
-
     }
 
 
@@ -85,12 +87,21 @@ public class GameController {
     void start(Scene scene)
     {
 
-//        scene.setOnKeyPressed(keyEvent -> {
-//            if(keyEvent.getCode()== KeyCode.SPACE)
-//            {
-//                move();
-//            }
-//        });
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+
+                if(event.getCode()==KeyCode.getKeyCode("Z"))
+                {
+                    for(int i=0;i< gamearray.size();i++)
+                    {
+                        gamearray.get(i).shiftleft();
+                    }
+                }
+            }
+        });
+
+
 
         ArrayList<String> platformList = new ArrayList<String>();
         platformList.add("Islands1.png");
@@ -108,7 +119,6 @@ public class GameController {
         willhero=(ImageView) scene.lookup("#willhero") ;
         anchorPane=(AnchorPane) scene.lookup("#anchorPane");
         move();
-        //generte_islansd(50);
         for(int i=0;i<9;i++){
             int x;
             // we will generate random integer
@@ -124,7 +134,6 @@ public class GameController {
     {
         int y=220;
         Image img=new Image(s);
-
         ImageView island1=new ImageView();
         island1.setImage(img);
         island1.setFitHeight(50);
@@ -133,7 +142,16 @@ public class GameController {
         island1.setY(y);
 
         anchorPane.getChildren().add(island1);
+        GameObject g=new GameObject(island1,x,y,50);
+        gamearray.add(g);
     }
+
+    void generate_orcs()
+    {
+
+    }
+
+
 //    @FXML // This method is called by the FXMLLoader when initialization is complete
 //    void initialize() {
 //        start();
