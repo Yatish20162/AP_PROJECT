@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.animation.Animation;
@@ -78,6 +79,9 @@ public class GameController {
 
     }
 
+
+
+
     void start(Scene scene)
     {
 
@@ -87,6 +91,20 @@ public class GameController {
 //                move();
 //            }
 //        });
+
+        ArrayList<String> platformList = new ArrayList<String>();
+        platformList.add("Islands1.png");
+        platformList.add("Islands2.png");
+        platformList.add("Islands3.png");
+        platformList.add("Islands4.png");
+        platformList.add("Islands5.png");
+        platformList.add("Islands6.png");
+        platformList.add("Islands7.png");
+        platformList.add("Islands8.png");
+        platformList.add("Islands9.png");
+        platformList.add("Islands10.png");
+
+
         willhero=(ImageView) scene.lookup("#willhero") ;
         anchorPane=(AnchorPane) scene.lookup("#anchorPane");
         move();
@@ -96,15 +114,16 @@ public class GameController {
             // we will generate random integer
             x=i*120;
             System.out.println(x);
-            generte_islansd(x);
+            String s=platformList.get(0);
+            generte_islansd(s,x);
         }
 
     }
 
-    void generte_islansd(int x)
+    void generte_islansd(String s,int x)
     {
         int y=220;
-        Image img=new Image("Islands1.png");
+        Image img=new Image(s);
 
         ImageView island1=new ImageView();
         island1.setImage(img);
