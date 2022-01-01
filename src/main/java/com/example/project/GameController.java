@@ -120,6 +120,8 @@ public class GameController {
 
         int picker = ran.nextInt(10);
         int orcpicker=ran.nextInt(5);
+        int orcgetter=ran.nextInt(20);
+
         int islandGap = 0;
 
 
@@ -131,7 +133,7 @@ public class GameController {
             // we will generate random integer
             System.out.println(islandGap);
             String s=platformList.get(picker);
-            if(orcpicker*2==6 || orcpicker*2==4)
+            if(orcgetter < 10)
             {
                 String o=orcsList.get(orcpicker);
                 generate_orcs(o,islandGap);
@@ -139,29 +141,31 @@ public class GameController {
             }
             picker = ran.nextInt(10);
             orcpicker=ran.nextInt(5);
-            generte_islansd(s,islandGap);
-            islandGap = (i*  200) + ran.nextInt(300);
+            orcgetter=ran.nextInt(20);
 
+            int old = generte_islansd(s,islandGap);
+            int  newly = old + islandGap +  ran.nextInt(150);
+            islandGap = newly;
         }
 
     }
 
-    void generte_islansd(String s,int x)
+    int generte_islansd(String s,int x)
     {
         int y=220;
         Image img=new Image(s);
         ImageView island1=new ImageView();
         island1.setImage(img);
         island1.setFitHeight(50);
-        island1.setFitWidth(100);
+        int width = 100 +  ran.nextInt(100);
+        island1.setFitWidth(width);
         island1.setX(x);
         island1.setY(y);
-
-
-
         anchorPane.getChildren().add(island1);
         GameObject g=new GameObject(island1,x,y,50);
         gamearray.add(g);
+
+        return width;
     }
 
     void generate_orcs(String o,int x)
