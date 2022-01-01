@@ -120,6 +120,9 @@ public class GameController {
         chests.add("ChestClosed.png");
         chests.add("coinclose.png");
 
+        ArrayList<Integer> coins=new ArrayList<Integer>(Arrays.asList(0,0,3,0,5,0,6,0,2));
+
+
 
         int numIslands = 90;
 
@@ -128,9 +131,10 @@ public class GameController {
         int orcgetter=ran.nextInt(20);
         int chestpicker=ran.nextInt(2);
         int chestgetter=ran.nextInt(20);
-
+        int coinpicker=ran.nextInt(10);
 
         int islandGap = 0;
+
 
 
         willhero=(ImageView) scene.lookup("#willhero") ;
@@ -154,12 +158,18 @@ public class GameController {
                 generate_chests(c,islandGap+50);
             }
 
+            if(i%5==0)
+            {
+                generate_coins(islandGap,coinpicker);
+
+            }
 
             picker = ran.nextInt(10);
             orcpicker=ran.nextInt(5);
             orcgetter=ran.nextInt(20);
             chestpicker=ran.nextInt(2);
             chestgetter=ran.nextInt(20);
+
 
             int old = generte_islansd(s,islandGap);
             int  newly = old + islandGap +  ran.nextInt(150);
@@ -225,12 +235,23 @@ public class GameController {
 
     }
 
+    void generate_coins(int x,int coinpicker)
+    {
+        System.out.println(" coins printed ");
+        int y=220-40;
+        for(int i=0;i<coinpicker;i++) {
+            Image img = new Image("Coin.png");
+            ImageView coin = new ImageView();
+            coin.setImage(img);
+            coin.setFitHeight(20+20);
+            coin.setFitWidth(20);
+            coin.setX(x+i);
+            coin.setY(y);
+            anchorPane.getChildren().add(coin);
+            GameObject g = new GameObject(coin, x+i, y, 50);
+            gamearray.add(g);
+        }
 
-//    @FXML // This method is called by the FXMLLoader when initialization is complete
-//    void initialize() {
-//        start();
-//
-//
-//    }
+    }
 
 }
