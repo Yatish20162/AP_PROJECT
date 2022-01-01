@@ -173,12 +173,12 @@ public class GameController {
 
         System.out.println(" ORCS PRINTINlnd.");
 
-        int y=220-40;
+        int y=220-30;
         Image img=new Image(o);
         ImageView orcs=new ImageView();
         orcs.setImage(img);
-        orcs.setFitHeight(40);
-        orcs.setFitWidth(40);
+        orcs.setFitHeight(30);
+        orcs.setFitWidth(30);
         orcs.setX(x);
         orcs.setY(y);
 
