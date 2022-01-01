@@ -148,6 +148,19 @@ public class GameController {
 
     void generate_orcs()
     {
+        ArrayList<String> orcsList = new ArrayList<String>();
+        orcsList.add("Orc2.png");
+        orcsList.add("Orc3.png");
+        orcsList.add("Orc4.png");
+        orcsList.add("Orc5.png");
+        orcsList.add("OrcBoss.png");
+        orcsList.add("TNT.png");
+
+
+
+
+        GameObject g=new GameObject(island1,x,y,50);
+        gamearray.add(g);
 
     }
 
