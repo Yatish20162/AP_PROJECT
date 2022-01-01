@@ -14,6 +14,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 import javafx.animation.Animation;
+import javafx.animation.AnimationTimer;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -79,13 +80,36 @@ public class GameController {
 
     }
 
+    boolean flag=false;
 
+    AnimationTimer collisoionTime=new AnimationTimer() {
+        @Override
+        public void handle(long timestamp) {
+            checkCollisions(willhero,platformview);
+        }
+    };
 
+    void checkCollisions(ImageView heroImg,ArrayList<ImageView> img)
+    {
+        for(int i=0;i<img.size();i++)
+        {
 
+            if(heroImg.getBoundsInParent().intersects(img.get(i).getBoundsInParent()))
+            {
+                flag=true;
+                hero.animate(flag);
+                flag=false;
+                System.out.println("Collision" + i);
+            }
+        }
 
+    }
+    ArrayList<ImageView> platformview=new ArrayList<ImageView>();
 
     void start(Scene scene)
     {
+
+        collisoionTime.start();
 
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -97,9 +121,6 @@ public class GameController {
                     {
                         gamearray.get(i).shiftleft();
                     }
-
-                    // collisions
-
 
                 }
             }
@@ -140,7 +161,8 @@ public class GameController {
         willhero=(ImageView) scene.lookup("#willhero") ;
         anchorPane=(AnchorPane) scene.lookup("#anchorPane");
 
-        hero=new Hero(willhero,0,220,20);
+        hero=new Hero(willhero,0,300,20);
+        hero.animate(flag);
 
         for(int i=0; i<numIslands; i++){
             // we will generate random integer
@@ -192,6 +214,8 @@ public class GameController {
         anchorPane.getChildren().add(island1);
         GameObject g=new GameObject(island1,x,y,50);
         gamearray.add(g);
+
+        platformview.add(island1);
 
         return width;
     }
