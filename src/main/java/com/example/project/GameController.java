@@ -169,21 +169,24 @@ public class GameController {
             System.out.println(islandGap);
             String s=platformList.get(picker);
             String c= chests.get(chestpicker);
-            if(orcgetter < 10)
-            {
-                String o=orcsList.get(orcpicker);
-                generate_orcs(o,islandGap);
-            }
 
-            if(chestgetter > 10)
-            {
-                generate_chests(c,islandGap+50);
-            }
+            if(i>0){
+                if(orcgetter < 10)
+                {
+                    String o=orcsList.get(orcpicker);
+                    generate_orcs(o,islandGap);
+                }
 
-            if(i%5==0)
-            {
-                generate_coins(islandGap+70,coinpicker);
+                if(chestgetter > 10)
+                {
+                    generate_chests(c,islandGap+50);
+                }
 
+                if(i%5==0)
+                {
+                    generate_coins(islandGap+70,coinpicker);
+
+                }
             }
 
             picker = ran.nextInt(10);
