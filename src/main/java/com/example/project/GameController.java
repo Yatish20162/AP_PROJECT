@@ -23,6 +23,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -30,6 +31,9 @@ public class GameController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
+
+    @FXML // fx:id="AnchorPane"
+    private AnchorPane anchorPane; // Value injected by FXMLLoader
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
@@ -40,8 +44,6 @@ public class GameController {
     @FXML // fx:id="willhero"
     private ImageView willhero; // Value injected by FXMLLoader
 
-    @FXML // fx:id="island1"
-    private ImageView island1; // Value injected by FXMLLoader
 
 
     @FXML
@@ -79,10 +81,23 @@ public class GameController {
 //            }
 //        });
         willhero=(ImageView) scene.lookup("#willhero") ;
+        anchorPane=(AnchorPane) scene.lookup("#anchorPane");
         move();
-        InputStream stream = getClass().getResourceAsStream("src\\main\\resources\\com\\example\\project\\Islands1.png");
-        Image newImage = new Image(stream);
-        island1.setImage(newImage);
+        Image img=new Image("Islands1.png");
+
+//        InputStream stream = getClass().getResourceAsStream("Islands1.png");
+//      Image newImage = new Image(stream);
+//       island1.setImage(newImage);
+
+         ImageView island1=new ImageView();
+        island1.setImage(img);
+        island1.setFitHeight(50);
+        island1.setFitWidth(100);
+        island1.setX(10);
+        island1.setY(100);
+
+        anchorPane.getChildren().add(island1);
+
 
     }
 //    @FXML // This method is called by the FXMLLoader when initialization is complete

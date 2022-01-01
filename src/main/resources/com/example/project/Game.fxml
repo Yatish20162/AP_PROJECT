@@ -6,29 +6,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="750.0" style="-fx-background-color: cyan;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.GameController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="750.0" style="-fx-background-color: cyan;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.GameController">
    <children>
       <Button layoutX="710.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#doPause" text="| |" />
-      <ImageView fitHeight="68.0" fitWidth="158.0" layoutX="45.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Islands1.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="160.0" layoutX="241.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Islands9.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="125.0" fitWidth="153.0" layoutX="364.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Islands8.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="132.0" fitWidth="172.0" layoutX="583.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Islands8.png" />
-         </image>
-      </ImageView>
       <ImageView fx:id="willhero" fitHeight="40.0" fitWidth="52.0" layoutX="45.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Screenshot%20(24).png" />
