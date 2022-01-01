@@ -126,12 +126,12 @@ public class GameController {
         willhero=(ImageView) scene.lookup("#willhero") ;
         anchorPane=(AnchorPane) scene.lookup("#anchorPane");
         move();
-        //generte_islansd(50);
+
         for(int i=0; i<numIslands; i++){
             // we will generate random integer
             System.out.println(islandGap);
             String s=platformList.get(picker);
-            if(orcpicker==5 || orcpicker==7)
+            if(orcpicker*2==6 || orcpicker*2==4)
             {
                 String o=orcsList.get(orcpicker);
                 generate_orcs(o,islandGap);
@@ -169,12 +169,12 @@ public class GameController {
 
         System.out.println(" ORCS PRINTINlnd.");
 
-        int y=50;
+        int y=220-20;
         Image img=new Image(o);
         ImageView orcs=new ImageView();
         orcs.setImage(img);
-        orcs.setFitHeight(50);
-        orcs.setFitWidth(100);
+        orcs.setFitHeight(20);
+        orcs.setFitWidth(20);
         orcs.setX(x);
         orcs.setY(y);
 
@@ -182,10 +182,6 @@ public class GameController {
         GameObject g=new GameObject(orcs,x,y,50);
         gamearray.add(g);
 
-
-
-        // GameObject g=new GameObject(island1,x,y,50);
-        // gamearray.add(g);
 
     }
 
