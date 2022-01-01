@@ -127,6 +127,8 @@ public class GameController {
         int orcpicker=ran.nextInt(5);
         int orcgetter=ran.nextInt(20);
         int chestpicker=ran.nextInt(2);
+        int chestgetter=ran.nextInt(20);
+
 
         int islandGap = 0;
 
@@ -145,7 +147,11 @@ public class GameController {
             {
                 String o=orcsList.get(orcpicker);
                 generate_orcs(o,islandGap);
-                generate_chests(c,islandGap);
+            }
+
+            if(chestgetter > 10)
+            {
+                generate_chests(c,islandGap+50);
             }
 
 
@@ -153,6 +159,7 @@ public class GameController {
             orcpicker=ran.nextInt(5);
             orcgetter=ran.nextInt(20);
             chestpicker=ran.nextInt(2);
+            chestgetter=ran.nextInt(20);
 
             int old = generte_islansd(s,islandGap);
             int  newly = old + islandGap +  ran.nextInt(150);
@@ -203,12 +210,12 @@ public class GameController {
     void generate_chests(String c,int x)
     {
         System.out.println(" chest printed ");
-        int y=220-40;
+        int y=220-30;
         Image img=new Image(c);
         ImageView chests=new ImageView();
         chests.setImage(img);
-        chests.setFitHeight(40);
-        chests.setFitWidth(40);
+        chests.setFitHeight(30);
+        chests.setFitWidth(30);
         chests.setX(x);
         chests.setY(y);
 
