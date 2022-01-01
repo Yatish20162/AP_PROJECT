@@ -1,5 +1,5 @@
 /**
- * Sample Skeleton for 'hello-view.fxml' Controller Class
+ * Sample Skeleton for 'Game.fxml' Controller Class
  */
 
 package com.example.project;
@@ -15,7 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class HelloController {
+public class GameController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -24,9 +24,9 @@ public class HelloController {
     private URL location;
 
     @FXML
-    void dostart(ActionEvent event) throws IOException {
-        System.out.println("Game started");
-        Parent root= FXMLLoader.load(getClass().getResource("Game.fxml"));
+    void doPause(ActionEvent event) throws IOException {
+        System.out.println("Game Paused");
+        Parent root= FXMLLoader.load(getClass().getResource("Pause.fxml"));
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
