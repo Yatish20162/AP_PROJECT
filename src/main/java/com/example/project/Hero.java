@@ -1,6 +1,8 @@
 package com.example.project;
 
 import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -9,41 +11,34 @@ import javafx.util.Duration;
 
 public class Hero extends GameObject{
 
-    TranslateTransition transition ;
-    TranslateTransition jump;
-    TranslateTransition fall;
+   int upp_steps=0;
 
     Hero(ImageView i, int x, int y, int widthx) {
-
         super(i, x, y, widthx);
-        jump=new TranslateTransition();
-        fall=new TranslateTransition();
-        jump.setNode(img);
-        jump.setDuration(Duration.millis(1000));
-        jump.setByY(-100);
-        jump.setCycleCount(1);
-
-        fall.setNode(img);
-        fall.setDuration(Duration.millis(1000));
-        fall.setByY(1);
-        jump.setOnFinished(event -> {
-            System.out.println(" jumppp " + img.getX()+" "+img.getY());
-            fall.play();
-        });
-
+        Timeline timeline=new Timeline(new KeyFrame(Duration.millis(20),
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                            if(upp_steps>0)
+                            {
+                                img.setY(img.getY()-1);
+                                upp_steps--;
+                            }
+                            else
+                            {
+                                img.setY(img.getY()+1);
+                            }
+                    }
+                }
+        ));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
     }
+
 
     void animate(boolean flag)
     {
-        if(flag)
-        {
-            fall.pause();
-            jump.play();
-        }
-        else
-        {
-            fall.play();
-        }
+
     }
 
 

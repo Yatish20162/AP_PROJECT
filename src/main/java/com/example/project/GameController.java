@@ -97,7 +97,7 @@ public class GameController {
             if(heroImg.getBoundsInParent().intersects(img.get(i).getBoundsInParent()))
             {
                 flag=true;
-                hero.animate(flag);
+               hero.upp_steps=100;
                 flag=false;
                 System.out.println("Collision" + i);
             }
@@ -145,7 +145,7 @@ public class GameController {
 
 
 
-        int numIslands = 10;
+        int numIslands = 90;
 
         int picker = ran.nextInt(10);
         int orcpicker=ran.nextInt(5);
