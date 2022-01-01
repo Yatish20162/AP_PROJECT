@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import javafx.animation.Animation;
@@ -92,30 +94,27 @@ public class GameController {
 //            }
 //        });
 
-        ArrayList<String> platformList = new ArrayList<String>();
-        platformList.add("Islands1.png");
-        platformList.add("Islands2.png");
-        platformList.add("Islands3.png");
-        platformList.add("Islands4.png");
-        platformList.add("Islands5.png");
-        platformList.add("Islands6.png");
-        platformList.add("Islands7.png");
-        platformList.add("Islands8.png");
-        platformList.add("Islands9.png");
-        platformList.add("Islands10.png");
+        ArrayList<String> platformList = new ArrayList<String>((Arrays.asList("Islands1.png","Islands2.png","Islands3.png","Islands4.png","Islands5.png","Islands6.png","Islands7.png","Islands8.png","Islands9.png","Islands10.png")));
+        
+
+        int numIslands = 90;
+        Random ran = new Random();
+        int picker = ran.nextInt(10);
+        int islandGap = 0;
 
 
         willhero=(ImageView) scene.lookup("#willhero") ;
         anchorPane=(AnchorPane) scene.lookup("#anchorPane");
         move();
         //generte_islansd(50);
-        for(int i=0;i<9;i++){
-            int x;
+        for(int i=0; i<numIslands; i++){
             // we will generate random integer
-            x=i*120;
-            System.out.println(x);
-            String s=platformList.get(i);
-            generte_islansd(s,x);
+            System.out.println(islandGap);
+            String s=platformList.get(picker);
+            picker = ran.nextInt(10);
+            generte_islansd(s,islandGap);
+            islandGap = (i*  200) + ran.nextInt(300);
+
         }
 
     }
