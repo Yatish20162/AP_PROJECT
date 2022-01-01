@@ -25,14 +25,16 @@ public class HelloController {
 
     @FXML
     void dostart(ActionEvent event) throws IOException {
+        GameController game=new GameController();
         System.out.println("Game started");
         Parent root= FXMLLoader.load(getClass().getResource("Game.fxml"));
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
+
         stage.setScene(scene);
         stage.show();
-
+        game.start(scene);
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
