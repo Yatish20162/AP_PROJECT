@@ -82,6 +82,8 @@ public class GameController {
 
 
 
+
+
     void start(Scene scene)
     {
 
@@ -114,12 +116,17 @@ public class GameController {
         orcsList.add("Orc5.png");
         orcsList.add("TNT.png");
 
+        ArrayList<String> chests=new ArrayList<String>();
+        chests.add("ChestClosed.png");
+        chests.add("coinclose.png");
+
 
         int numIslands = 90;
 
         int picker = ran.nextInt(10);
         int orcpicker=ran.nextInt(5);
         int orcgetter=ran.nextInt(20);
+        int chestpicker=ran.nextInt(2);
 
         int islandGap = 0;
 
@@ -133,15 +140,19 @@ public class GameController {
             // we will generate random integer
             System.out.println(islandGap);
             String s=platformList.get(picker);
+            String c= chests.get(chestpicker);
             if(orcgetter < 10)
             {
                 String o=orcsList.get(orcpicker);
                 generate_orcs(o,islandGap);
-
+                generate_chests(c,islandGap);
             }
+
+
             picker = ran.nextInt(10);
             orcpicker=ran.nextInt(5);
             orcgetter=ran.nextInt(20);
+            chestpicker=ran.nextInt(2);
 
             int old = generte_islansd(s,islandGap);
             int  newly = old + islandGap +  ran.nextInt(150);
@@ -186,6 +197,24 @@ public class GameController {
         GameObject g=new GameObject(orcs,x,y,50);
         gamearray.add(g);
 
+
+    }
+
+    void generate_chests(String c,int x)
+    {
+        System.out.println(" chest printed ");
+        int y=220-40;
+        Image img=new Image(c);
+        ImageView chests=new ImageView();
+        chests.setImage(img);
+        chests.setFitHeight(40);
+        chests.setFitWidth(40);
+        chests.setX(x);
+        chests.setY(y);
+
+        anchorPane.getChildren().add(chests);
+        GameObject g=new GameObject(chests,x,y,50);
+        gamearray.add(g);
 
     }
 
