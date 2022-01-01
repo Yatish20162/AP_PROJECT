@@ -53,6 +53,7 @@ public class GameController {
     ArrayList<GameObject> gamearray=new ArrayList<GameObject>();
 
     Hero hero;
+    Orc orc;
 
 
     Random ran=new Random();
@@ -80,32 +81,36 @@ public class GameController {
 
     }
 
-    boolean flag=false;
+
 
     AnimationTimer collisoionTime=new AnimationTimer() {
         @Override
         public void handle(long timestamp) {
-            checkCollisions(willhero,platformview);
+            checkCollisions(willhero,orcview,platformview);
         }
     };
 
-    void checkCollisions(ImageView heroImg,ArrayList<ImageView> img)
+    void checkCollisions(ImageView heroImg,ArrayList<ImageView> orcsview,ArrayList<ImageView> img)
     {
         for(int i=0;i<img.size();i++)
         {
-
             if(heroImg.getBoundsInParent().intersects(img.get(i).getBoundsInParent()))
             {
-                flag=true;
                hero.upp_steps=100;
-                flag=false;
                 System.out.println("Collision" + i);
+            }
+
+            if (orcsview.get(i).getBoundsInParent().intersects(img.get(i).getBoundsInParent())) {
+                System.out.println("ORCS COLLIDED");
+                orc.upp_steps = 50;
             }
         }
 
+
+
     }
     ArrayList<ImageView> platformview=new ArrayList<ImageView>();
-
+    ArrayList<ImageView> orcview=new ArrayList<ImageView>();
     void start(Scene scene)
     {
 
@@ -115,13 +120,19 @@ public class GameController {
             @Override
             public void handle(KeyEvent event) {
 
-                if(event.getCode()==KeyCode.getKeyCode("Z"))
+                System.out.println(hero.img.getY());
+                if( hero.img.getY()<=0 && event.getCode()==KeyCode.getKeyCode("Z") )
                 {
+
                     for(int i=0;i< gamearray.size();i++)
                     {
                         gamearray.get(i).shiftleft();
                     }
 
+                }
+                else
+                {
+                    System.out.println("Exited");
                 }
             }
         });
@@ -162,7 +173,7 @@ public class GameController {
         anchorPane=(AnchorPane) scene.lookup("#anchorPane");
 
         hero=new Hero(willhero,0,300,20);
-        hero.animate(flag);
+        //hero.animate();
 
         for(int i=0; i<numIslands; i++){
             // we will generate random integer
@@ -226,8 +237,6 @@ public class GameController {
     void generate_orcs(String o,int x)
     {
 
-        System.out.println(" ORCS PRINTINlnd.");
-
         int y=220-30;
         Image img=new Image(o);
         ImageView orcs=new ImageView();
@@ -237,6 +246,8 @@ public class GameController {
         orcs.setX(x);
         orcs.setY(y);
 
+        orc=new Orc(orcs,x,y,50);
+        orcview.add(orcs);
         anchorPane.getChildren().add(orcs);
         GameObject g=new GameObject(orcs,x,y,50);
         gamearray.add(g);

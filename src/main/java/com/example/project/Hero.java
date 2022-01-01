@@ -33,11 +33,6 @@ public class Hero extends GameObject{
         ));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
-    }
-
-
-    void animate(boolean flag)
-    {
 
     }
 
