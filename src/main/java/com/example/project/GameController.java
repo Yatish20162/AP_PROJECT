@@ -51,6 +51,9 @@ public class GameController {
 
     ArrayList<GameObject> gamearray=new ArrayList<GameObject>();
 
+    Hero hero;
+
+
     Random ran=new Random();
 
 
@@ -73,15 +76,7 @@ public class GameController {
 
     void move()
     {
-        // if conditions required on the basis of the island clash
 
-        TranslateTransition transition=new TranslateTransition();
-        transition.setNode(willhero);
-        transition.setDuration(Duration.millis(1000));
-        transition.setCycleCount(Animation.INDEFINITE);
-        transition.setAutoReverse(true);
-        transition.setByY(-100);
-        transition.play();
     }
 
 
@@ -100,6 +95,10 @@ public class GameController {
                     {
                         gamearray.get(i).shiftleft();
                     }
+
+                    // collisions
+
+
                 }
             }
         });
@@ -125,7 +124,8 @@ public class GameController {
 
         willhero=(ImageView) scene.lookup("#willhero") ;
         anchorPane=(AnchorPane) scene.lookup("#anchorPane");
-        move();
+
+        hero=new Hero(willhero,0,220,20);
 
         for(int i=0; i<numIslands; i++){
             // we will generate random integer
@@ -141,7 +141,6 @@ public class GameController {
             orcpicker=ran.nextInt(5);
             generte_islansd(s,islandGap);
             islandGap = (i*  200) + ran.nextInt(300);
-
         }
 
     }
@@ -169,12 +168,12 @@ public class GameController {
 
         System.out.println(" ORCS PRINTINlnd.");
 
-        int y=220-20;
+        int y=220-40;
         Image img=new Image(o);
         ImageView orcs=new ImageView();
         orcs.setImage(img);
-        orcs.setFitHeight(20);
-        orcs.setFitWidth(20);
+        orcs.setFitHeight(40);
+        orcs.setFitWidth(40);
         orcs.setX(x);
         orcs.setY(y);
 
