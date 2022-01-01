@@ -45,6 +45,13 @@ public class GameController {
     private ImageView willhero; // Value injected by FXMLLoader
 
 
+    public int randomx(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
+    }
+    public int randomy(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
+    }
+
 
     @FXML
     void doPause(MouseEvent event) throws IOException {
@@ -83,22 +90,30 @@ public class GameController {
         willhero=(ImageView) scene.lookup("#willhero") ;
         anchorPane=(AnchorPane) scene.lookup("#anchorPane");
         move();
+        //generte_islansd(50);
+        for(int i=0;i<9;i++){
+            int x;
+            // we will generate random integer
+            x=i*120;
+            System.out.println(x);
+            generte_islansd(x);
+        }
+
+    }
+
+    void generte_islansd(int x)
+    {
+        int y=220;
         Image img=new Image("Islands1.png");
 
-//        InputStream stream = getClass().getResourceAsStream("Islands1.png");
-//      Image newImage = new Image(stream);
-//       island1.setImage(newImage);
-
-         ImageView island1=new ImageView();
+        ImageView island1=new ImageView();
         island1.setImage(img);
         island1.setFitHeight(50);
         island1.setFitWidth(100);
-        island1.setX(10);
-        island1.setY(100);
+        island1.setX(x);
+        island1.setY(y);
 
         anchorPane.getChildren().add(island1);
-
-
     }
 //    @FXML // This method is called by the FXMLLoader when initialization is complete
 //    void initialize() {
