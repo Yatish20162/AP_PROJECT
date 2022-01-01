@@ -114,7 +114,7 @@ public class GameController {
             // we will generate random integer
             x=i*120;
             System.out.println(x);
-            String s=platformList.get(0);
+            String s=platformList.get(i);
             generte_islansd(s,x);
         }
 
