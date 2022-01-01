@@ -51,6 +51,7 @@ public class GameController {
 
     ArrayList<GameObject> gamearray=new ArrayList<GameObject>();
 
+    Random ran=new Random();
 
 
     public int randomx(int min, int max) {
@@ -106,11 +107,19 @@ public class GameController {
 
 
         ArrayList<String> platformList = new ArrayList<String>((Arrays.asList("Islands1.png","Islands2.png","Islands3.png","Islands4.png","Islands5.png","Islands6.png","Islands7.png","Islands8.png","Islands9.png","Islands10.png")));
-        
+
+        ArrayList<String> orcsList = new ArrayList<String>();
+        orcsList.add("Orc2.png");
+        orcsList.add("Orc3.png");
+        orcsList.add("Orc4.png");
+        orcsList.add("Orc5.png");
+        orcsList.add("TNT.png");
+
 
         int numIslands = 90;
-        Random ran = new Random();
+
         int picker = ran.nextInt(10);
+        int orcpicker=ran.nextInt(5);
         int islandGap = 0;
 
 
@@ -122,7 +131,14 @@ public class GameController {
             // we will generate random integer
             System.out.println(islandGap);
             String s=platformList.get(picker);
+            if(orcpicker==5 || orcpicker==7)
+            {
+                String o=orcsList.get(orcpicker);
+                generate_orcs(o,islandGap);
+
+            }
             picker = ran.nextInt(10);
+            orcpicker=ran.nextInt(5);
             generte_islansd(s,islandGap);
             islandGap = (i*  200) + ran.nextInt(300);
 
@@ -141,21 +157,30 @@ public class GameController {
         island1.setX(x);
         island1.setY(y);
 
+
+
         anchorPane.getChildren().add(island1);
         GameObject g=new GameObject(island1,x,y,50);
         gamearray.add(g);
     }
 
-    void generate_orcs()
+    void generate_orcs(String o,int x)
     {
-        ArrayList<String> orcsList = new ArrayList<String>();
-        orcsList.add("Orc2.png");
-        orcsList.add("Orc3.png");
-        orcsList.add("Orc4.png");
-        orcsList.add("Orc5.png");
-        orcsList.add("OrcBoss.png");
-        orcsList.add("TNT.png");
 
+        System.out.println(" ORCS PRINTINlnd.");
+
+        int y=50;
+        Image img=new Image(o);
+        ImageView orcs=new ImageView();
+        orcs.setImage(img);
+        orcs.setFitHeight(50);
+        orcs.setFitWidth(100);
+        orcs.setX(x);
+        orcs.setY(y);
+
+        anchorPane.getChildren().add(orcs);
+        GameObject g=new GameObject(orcs,x,y,50);
+        gamearray.add(g);
 
 
 
