@@ -120,7 +120,7 @@ public class GameController {
         chests.add("ChestClosed.png");
         chests.add("coinclose.png");
 
-        ArrayList<Integer> coins=new ArrayList<Integer>(Arrays.asList(0,0,3,0,5,0,6,0,2));
+        ArrayList<Integer> coins =new ArrayList<Integer>(Arrays.asList(0,0,3,0,5,0,6,0,2));
 
 
 
@@ -160,7 +160,7 @@ public class GameController {
 
             if(i%5==0)
             {
-                generate_coins(islandGap,coinpicker);
+                generate_coins(islandGap+70,coinpicker);
 
             }
 
@@ -238,12 +238,12 @@ public class GameController {
     void generate_coins(int x,int coinpicker)
     {
         System.out.println(" coins printed ");
-        int y=220-40;
+        int y= 220 - 20 - ran.nextInt(100);
         for(int i=0;i<coinpicker;i++) {
             Image img = new Image("Coin.png");
             ImageView coin = new ImageView();
             coin.setImage(img);
-            coin.setFitHeight(20+20);
+            coin.setFitHeight(20);
             coin.setFitWidth(20);
             coin.setX(x+i);
             coin.setY(y);
