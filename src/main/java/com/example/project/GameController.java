@@ -180,10 +180,19 @@ public class GameController {
                     System.out.println("Pagal hai kya???????????");
 
 
-                    for(int i=0;i< gamearray.size();i++)
+                    for(int i=0;i< data.platformObjects.size();i++)
                     {
-                        gamearray.get(i).shiftleft();
+                        data.platformObjects.get(i).shiftleft();
                     }
+
+                    for(int i=0;i< data.orcsObjects.size();i++)
+                    {
+                        data.orcsObjects.get(i).shiftleft();
+                    }
+
+                    
+
+
                 }
                 else
                 {
