@@ -64,6 +64,26 @@ public class Data {
         
     } 
 
+    Orcs generate_boss(double x){
+
+        int ly=220-30;
+
+        Image img=new Image("OrcBoss.png");
+        ImageView orcs = new ImageView();
+        orcs.setImage(img);
+        orcs.setFitHeight(60);
+        orcs.setFitWidth(60);
+        orcs.setX(x);
+        orcs.setY(ly);
+
+        Orcs orc = new Boss_orc(orcs,x,ly,50,50);
+        orcsObjects.add(orc);
+
+        return orc;
+        
+
+    }
+
     
     Orcs generate_orc(String o, double x){
         
@@ -101,20 +121,6 @@ public class Data {
         coinObjects.add(orc);
 
         return orc;
-
-    //     int y= 220 - 20 - ran.nextInt(100);
-    //     for(int i=0;i<coinpicker;i++) {
-    //         Image img = new Image("Coin.png");
-    //         ImageView coin = new ImageView();
-    //         coin.setImage(img);
-    //         coin.setFitHeight(20);
-    //         coin.setFitWidth(20);
-    //         coin.setX(x+i);
-    //         coin.setY(y);
-    //         anchorPane.getChildren().add(coin);
-    //         GameObject g = new GameObject(coin, x+i, y, 50, i);
-    //         gamearray.add(g);
-        
     } 
 
 
@@ -147,45 +153,11 @@ public class Data {
             Coin_Chest cch = new Coin_Chest(chest,x,(double)ly,(double)30,(double)30);
             chestObjects.add(cch);
             return cch;
-        }   
-        
-
-    //     System.out.println(" chest printed ");
-    //     int y=220-30;
-    //     Image img=new Image(c);
-    //     ImageView chests=new ImageView();
-    //     chests.setImage(img);
-    //     chests.setFitHeight(30);
-    //     chests.setFitWidth(30);
-    //     chests.setX(x);
-    //     chests.setY(y);
-
-    //     anchorPane.getChildren().add(chests);
-    //     GameObject g=new GameObject(chests,x,y,50, y);
-    //     gamearray.add(g);
-        
+        }       
     } 
 
 
-    Orcs generate_boss(double x){
-
-        int ly=220-30;
-
-        Image img=new Image("OrcBoss.png");
-        ImageView orcs = new ImageView();
-        orcs.setImage(img);
-        orcs.setFitHeight(60);
-        orcs.setFitWidth(60);
-        orcs.setX(x);
-        orcs.setY(ly);
-
-        Orcs orc = new Boss_orc(orcs,x,ly,50,50);
-        orcsObjects.add(orc);
-
-        return orc;
-        
-
-    }
+  
 
 
 

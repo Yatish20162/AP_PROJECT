@@ -94,7 +94,7 @@ public class GameController {
                
                 if (orcsview.get(j).getImg().getBoundsInParent().intersects(img.get(i).getImg().getBoundsInParent())) {
                     System.out.println("ORCS COLLIDED");
-                    orcsview.get(j).upp_steps = 30;
+                    orcsview.get(j).upp_steps = 50;
                 }
             }
         }
