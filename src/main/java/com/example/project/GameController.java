@@ -60,6 +60,7 @@ public class GameController {
     Random ran=new Random();
 
 
+
     // GameController(){
     //     data = new Data();
     //     ran=new Random();
@@ -79,12 +80,12 @@ public class GameController {
     AnimationTimer collisoionTime=new AnimationTimer() {
         @Override
         public void handle(long timestamp) {
-            checkCollisions(willhero,data.getOrcsView(),data.getPlatformView(),data.getCoinObjects());
+            checkCollisions(willhero,data.getOrcsView(),data.getPlatformView(),data.getCoinObjects(),data.getCoinObjects(), data.getChestObjects());
             //System.out.println(";oll");
         }
     };
 
-    void checkCollisions(ImageView heroImg,ArrayList<Orcs> orcsview,ArrayList<GameObject> img,ArrayList<Coin> coinsview)
+    void checkCollisions(ImageView heroImg,ArrayList<Orcs> orcsview,ArrayList<GameObject> img,ArrayList<Coin> coinsview, ArrayList<Coin> arrayList, ArrayList<Chest> chestview)
     {
         for(int i=0;i<img.size();i++)
         {
@@ -106,17 +107,36 @@ public class GameController {
                     //coins = hero.coins;
                     hero.updateCoins(coinsview.get(j).getValue());
                     System.out.println("COINS " + hero.getCoins());
+
+
+                    coins.setText(Double.toString(hero.getCoins()));
+
                     coinsview.get(j).getImg().setVisible(false);
                     coinsview.get(j).setValue(0);
                 }
             }
+
+            for(int j=0;j<chestview.size();j++){
+               
+                if (chestview.get(j).getImg().getBoundsInParent().intersects(heroImg.getBoundsInParent())) {
+                    System.out.println("Chesttt COLLIDED");
+
+                    Image  whichone = new Image("coinopen.png");
+
+
+                    if( chestview.get(j) instanceof Weapon_Chest){
+                        whichone = new Image("ChestOpen.png");
+
+                    }
+                   
+
+                    chestview.get(j).getImg().setImage(whichone);
+                   
+                }
+            }
         }
-
-
-
     }
     
-
 
     void initiate() {
 
@@ -189,17 +209,44 @@ public class GameController {
 
     void start(Scene scene)
     {
+
         collisoionTime.start();
+
+        AnimationTimer timer = new AnimationTimer(){
+            @Override
+            public void handle(long l){
+                
+
+                System.out.println(hero.getImg().getBoundsInParent().getMaxY() + " is YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+
+                if(hero.getImg().getBoundsInParent().getMaxY() > 250){
+
+                    System.out.println("Exited");
+
+                    gameover.setVisible(true);
+                    
+                }
+
+            }
+        };
+
+        timer.start();
+
+
+
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
 
-                System.out.println(hero.img.getY());
+                // System.out.println(hero.getImg().getBoundsInParent().getMaxY() + " is YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
 
-                if(hero.img.getY()<=0)
-                {hero.setAlive(false);}
+                // if(hero.img.getY()<=-200)
+                // {hero.setAlive(false);}
 
-                if(hero.img.getY()<=0 && event.getCode()==KeyCode.getKeyCode("Z") )
+
+               
+
+                if(hero.img.getY()<=100 && event.getCode()==KeyCode.getKeyCode("Z") )
                 {
                     System.out.println("Pagal hai kya???????????");
 
@@ -238,6 +285,8 @@ public class GameController {
         });
 
         willhero=(ImageView) scene.lookup("#willhero") ;
+        coins=(Label) scene.lookup("#coins") ;
+
         anchorPane=(AnchorPane) scene.lookup("#anchorPane");
 
         gameover = (ImageView) scene.lookup("#gameover");
@@ -264,7 +313,7 @@ public class GameController {
     void addChest(double islandGap){
 
         boolean rand = ran.nextBoolean();        
-        Chest newchest =  data.generate_chest(islandGap, rand);
+        Chest newchest =  data.generate_chest(islandGap + 50, rand);
         anchorPane.getChildren().add(newchest.getImg());
     }
 
@@ -276,7 +325,7 @@ public class GameController {
 
     void addCoins(double x, double y){
         
-        Coin coin = data.generate_coins(x,y, ran.nextInt(10));
+        Coin coin = data.generate_coins(x,y, 1);
         anchorPane.getChildren().add(coin.getImg());
     }
 

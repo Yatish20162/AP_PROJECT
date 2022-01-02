@@ -5,6 +5,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="750.0" style="-fx-background-color: cyan;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.GameController">
    <children>
@@ -14,7 +15,10 @@
             <Image url="@Screenshot%20(24).png" />
          </image>
       </ImageView>
-      <Label fx:id="coins" layoutX="76.0" layoutY="30.0" prefHeight="18.0" prefWidth="38.0" />
+      <Label fx:id="coins" layoutX="70.0" layoutY="24.0" prefHeight="18.0" prefWidth="38.0" text="0" textFill="#131313" underline="true">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
       <ImageView fitHeight="34.0" fitWidth="31.0" layoutX="30.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Coin.png" />

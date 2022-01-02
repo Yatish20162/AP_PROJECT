@@ -218,5 +218,13 @@ public class Data {
         this.orcsObjects.add(orc);
 
     }
+
+
+    public ArrayList<Chest> getChestObjects() {
+        return chestObjects;
+    }
+    public void setChestObjects(ArrayList<Chest> chestObjects) {
+        this.chestObjects = chestObjects;
+    }
     
 }

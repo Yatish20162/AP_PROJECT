@@ -3,7 +3,7 @@ package com.example.project;
 import javafx.scene.image.ImageView;
 
 public class GameObject {
-    protected ImageView img;
+     ImageView img;
     int shiftvaue=10;
     int minX,minY,maxX,maxY;
 
