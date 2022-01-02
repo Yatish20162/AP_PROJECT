@@ -11,4 +11,19 @@ public class Helmet {
         this.weapons = weapons;
     }
 
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public void setWeapons(ArrayList<Weapon> weapons) {
+        this.weapons = weapons;
+    }
+    public String getName() {
+        return name;
+    }
+    public ArrayList<Weapon> getWeapons() {
+        return weapons;
+    }
+
 }

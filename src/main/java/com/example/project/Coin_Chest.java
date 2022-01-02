@@ -6,8 +6,8 @@ public class Coin_Chest extends Chest {
     
     private int chest_coins;
     
-    Coin_Chest(ImageView i,int x,int y,int widthx, boolean opened, Location location, Weapon weapon) {
-        super(i,x,y,widthx,opened);
+    Coin_Chest(ImageView i, double x, double y, double widthx, double height, boolean opened, Location location, Weapon weapon) {
+        super(i,x,y,widthx,height,opened);
 
         this.chest_coins = chest_coins;
 

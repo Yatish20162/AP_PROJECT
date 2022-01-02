@@ -6,8 +6,8 @@ public class Weapon_Chest extends Chest{
 
     private Weapon weapon;
 
-    Weapon_Chest(ImageView i,int x,int y,int widthx, boolean opened, Location location, Weapon weapon) {
-        super(i,x,y,widthx,opened);
+    Weapon_Chest(ImageView i,double x, double y, double widthx, double height, boolean opened, Location location, Weapon weapon) {
+        super(i,x,y,widthx,height,opened);
 
         this.weapon = weapon;
 

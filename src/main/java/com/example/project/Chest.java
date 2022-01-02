@@ -5,8 +5,8 @@ import javafx.scene.image.ImageView;
 public class Chest extends GameObject {
     private  boolean opened;
 
-    Chest(ImageView i,int x,int y,int widthx, boolean opened) {
-        super(i, x, y, widthx);
+    Chest(ImageView i,double x,double y,double widthx,double height, boolean opened) {
+        super(i, x, y, widthx, height);
         this.opened = opened;
     }
 

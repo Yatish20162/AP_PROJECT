@@ -11,8 +11,8 @@ public class Orc extends GameObject {
 
     int upp_steps = 0;
 
-    Orc(ImageView i, int x, int y, int widthx) {
-        super(i, x, y, widthx);
+    Orc(ImageView i, double x, double y, double widthx, double height) {
+        super(i, x, y, widthx, height);
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(20),
                 new EventHandler<ActionEvent>() {
                     @Override

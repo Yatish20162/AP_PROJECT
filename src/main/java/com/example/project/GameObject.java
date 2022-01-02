@@ -9,14 +9,11 @@ public class GameObject {
 
     Location location;
 
-    GameObject(ImageView i,int x,int y,int widthx)
+    GameObject(ImageView i,double x,double y,double width, double height)
     {
         img=i;
-        this.location  = new Location(x,y);
-        minX=x;
-        maxX=x+widthx;
-        minY=y;
-        maxY=y;
+        this.location  = new Location(x, y, x+width, y+height);
+        
     }
 
     void shiftleft()
@@ -24,7 +21,17 @@ public class GameObject {
         this.minX-=50;
         this.maxX-=50;
         img.setX(minX);
-        this.location.x=minX;
+        this.location.setMin_x(minX);;
+    }
+
+
+
+    public void setImg(ImageView img) {
+        this.img = img;
+    }
+
+    public ImageView getImg() {
+        return img;
     }
 
 

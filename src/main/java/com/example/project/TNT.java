@@ -6,8 +6,8 @@ public class TNT extends GameObject {
 
     Range range;
 
-    TNT(ImageView i, int x, int y, int widthx, Range range) {
-        super(i, x, y, widthx);
+    TNT(ImageView i, double x, double y, double widthx, double height, Range range) {
+        super(i, x, y, widthx, height);
 
         this.range = range;
         

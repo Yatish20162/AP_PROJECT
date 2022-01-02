@@ -9,8 +9,8 @@ public class Weapon extends GameObject {
     Range range;
 
 
-    Weapon(ImageView i,int x,int y,int widthx,String name, int level ,double damage,Range range) {
-        super(i, x, y, widthx);
+    Weapon(ImageView i,double x, double y, double widthx, double height,String name, int level ,double damage,Range range) {
+        super(i, x, y, widthx, height);
         this.name = name;
         this.level = level;
         this.damage = damage;

@@ -11,10 +11,15 @@ import javafx.util.Duration;
 
 public class Hero extends GameObject{
 
-   int upp_steps=0;
+    Helmet helmet;
+    String name;
+    double score;
+    double coins;
 
-    Hero(ImageView i, int x, int y, int widthx) {
-        super(i, x, y, widthx);
+    int upp_steps=0;
+
+    Hero(ImageView i,double x, double y, double widthx, double height) {
+        super(i, x, y, widthx, height);
         Timeline timeline=new Timeline(new KeyFrame(Duration.millis(20),
                 new EventHandler<ActionEvent>() {
                     @Override
@@ -34,6 +39,27 @@ public class Hero extends GameObject{
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
+    }
+
+
+
+    public void setCoins(double coins) {
+        this.coins = coins;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setScore(double score) {
+        this.score = score;
+    }
+    public double getCoins() {
+        return coins;
+    }
+    public String getName() {
+        return name;
+    }
+    public double getScore() {
+        return score;
     }
 
 

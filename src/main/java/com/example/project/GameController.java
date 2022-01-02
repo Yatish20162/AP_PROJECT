@@ -53,17 +53,8 @@ public class GameController {
     ArrayList<GameObject> gamearray=new ArrayList<GameObject>();
 
     Hero hero;
-    Orc orc;
-
-
+    Data data;
     Random ran=new Random();
-
-
-    public int randomx(int min, int max) {
-        return (int) ((Math.random() * (max - min)) + min);
-    }
-
-
 
     @FXML
     void doPause(MouseEvent event) throws IOException {
@@ -76,47 +67,102 @@ public class GameController {
         stage.show();
     }
 
-    void move()
-    {
-
-    }
-
-
-
     AnimationTimer collisoionTime=new AnimationTimer() {
         @Override
         public void handle(long timestamp) {
-            checkCollisions(willhero,orcview,platformview);
+            // checkCollisions(willhero,data.getOrcsView(),data.getPlatformView());
+            System.out.println(";oll");
         }
     };
 
-    void checkCollisions(ImageView heroImg,ArrayList<ImageView> orcsview,ArrayList<ImageView> img)
-    {
-        for(int i=0;i<img.size();i++)
-        {
-            if(heroImg.getBoundsInParent().intersects(img.get(i).getBoundsInParent()))
-            {
-               hero.upp_steps=100;
-                System.out.println("Collision" + i);
+    // void checkCollisions(ImageView heroImg,ArrayList<GameObject> orcsview,ArrayList<GameObject> img)
+    // {
+    //     for(int i=0;i<img.size();i++)
+    //     {
+    //         if(heroImg.getBoundsInParent().intersects(img.get(i).getImg().getBoundsInParent()))
+    //         {
+    //            hero.upp_steps=100;
+    //             System.out.println("Collision" + i);
+    //         }
+    //         // if(orcsview.get(i) != null){
+    //         // if (orcsview.get(i).getBoundsInParent().intersects(img.get(i).getBoundsInParent())) {
+    //         //     System.out.println("ORCS COLLIDED");
+    //         //     orc.upp_steps = 50;
+    //         // }
+    //         // }
+    //     }
+    // }
+    
+
+
+    void initiate(){
+
+        
+
+        double numIslands = data.getNumIslands();
+
+        int picker = ran.nextInt(10);
+        int orcpicker=ran.nextInt(5);
+        int orcgetter=ran.nextInt(20);
+        int chestpicker=ran.nextInt(2);
+        int chestgetter=ran.nextInt(20);
+        int coinpicker=ran.nextInt(10);
+
+        double islandGap = 0;
+
+        hero=new Hero(willhero,0,300,20, islandGap);
+
+
+
+        for(int i=0; i<numIslands; i++){
+            System.out.println(islandGap);
+
+            String s = data.getPlatformList().get(picker);
+            String c = data.greenorcsList.get(chestpicker);
+            //TODO: #1 make index getter
+
+            if(i>0){
+                if(orcgetter < 10)
+                {
+                    String o = data.getGreenorcsList().get(orcpicker);
+                    addOrcs(o,islandGap);
+                }
+
+                // if(chestgetter > 10)
+                // {
+                //     generate_chests(c,islandGap+50);
+                // }
+
+                // if(i%5==0)
+                // {
+                //     generate_coins(islandGap+70,coinpicker);
+
+                // }
             }
-            // if(orcsview.get(i) != null){
-            // if (orcsview.get(i).getBoundsInParent().intersects(img.get(i).getBoundsInParent())) {
-            //     System.out.println("ORCS COLLIDED");
-            //     orc.upp_steps = 50;
-            // }
-            // }
+            picker = ran.nextInt(10);
+            orcpicker=ran.nextInt(5);
+            orcgetter=ran.nextInt(20);
+            // chestpicker=ran.nextInt(2);
+            // chestgetter=ran.nextInt(20);
+
+            double old = addIsland(s,islandGap,220);
+            double  newly = old + islandGap +  ran.nextInt(150);
+            islandGap = newly;
         }
+
+
+
+        //hero.animate();
+
 
 
 
     }
-    ArrayList<ImageView> platformview=new ArrayList<ImageView>();
-    ArrayList<ImageView> orcview=new ArrayList<ImageView>();
+
+
     void start(Scene scene)
     {
-
         collisoionTime.start();
-
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -129,7 +175,6 @@ public class GameController {
                     {
                         gamearray.get(i).shiftleft();
                     }
-
                 }
                 else
                 {
@@ -138,159 +183,105 @@ public class GameController {
             }
         });
 
-
-
-        ArrayList<String> platformList = new ArrayList<String>((Arrays.asList("Islands1.png","Islands2.png","Islands3.png","Islands4.png","Islands5.png","Islands6.png","Islands7.png","Islands8.png","Islands9.png","Islands10.png")));
-
-        ArrayList<String> orcsList = new ArrayList<String>();
-        orcsList.add("Orc2.png");
-        orcsList.add("Orc3.png");
-        orcsList.add("Orc4.png");
-        orcsList.add("Orc5.png");
-        orcsList.add("TNT.png");
-
-        ArrayList<String> chests=new ArrayList<String>();
-        chests.add("ChestClosed.png");
-        chests.add("coinclose.png");
-
-        ArrayList<Integer> coins =new ArrayList<Integer>(Arrays.asList(0,0,3,0,5,0,6,0,2));
-
-
-
-        int numIslands = 90;
-
-        int picker = ran.nextInt(10);
-        int orcpicker=ran.nextInt(5);
-        int orcgetter=ran.nextInt(20);
-        int chestpicker=ran.nextInt(2);
-        int chestgetter=ran.nextInt(20);
-        int coinpicker=ran.nextInt(10);
-
-        int islandGap = 0;
-
-
-
         willhero=(ImageView) scene.lookup("#willhero") ;
         anchorPane=(AnchorPane) scene.lookup("#anchorPane");
 
-        hero=new Hero(willhero,0,300,20);
-        //hero.animate();
-
-        for(int i=0; i<numIslands; i++){
-            // we will generate random integer
-            System.out.println(islandGap);
-            String s=platformList.get(picker);
-            String c= chests.get(chestpicker);
-
-            if(i>0){
-                if(orcgetter < 10)
-                {
-                    String o=orcsList.get(orcpicker);
-                    generate_orcs(o,islandGap);
-                }
-
-                if(chestgetter > 10)
-                {
-                    generate_chests(c,islandGap+50);
-                }
-
-                if(i%5==0)
-                {
-                    generate_coins(islandGap+70,coinpicker);
-
-                }
-            }
-
-            picker = ran.nextInt(10);
-            orcpicker=ran.nextInt(5);
-            orcgetter=ran.nextInt(20);
-            chestpicker=ran.nextInt(2);
-            chestgetter=ran.nextInt(20);
-
-
-            int old = generte_islansd(s,islandGap);
-            int  newly = old + islandGap +  ran.nextInt(150);
-            islandGap = newly;
-        }
+        this.initiate();
 
     }
 
-    int generte_islansd(String s,int x)
-    {
-        int y=220;
-        Image img=new Image(s);
-        ImageView island1=new ImageView();
-        island1.setImage(img);
-        island1.setFitHeight(50);
-        int width = 100 +  ran.nextInt(100);
-        island1.setFitWidth(width);
-        island1.setX(x);
-        island1.setY(y);
-        anchorPane.getChildren().add(island1);
-        GameObject g=new GameObject(island1,x,y,50);
-        gamearray.add(g);
 
-        platformview.add(island1);
+    double addIsland(String s, double x, double y){
 
-        return width;
-    }
-
-    void generate_orcs(String o,int x)
-    {
-
-        int y=220-30;
-        Image img=new Image(o);
-        ImageView orcs=new ImageView();
-        orcs.setImage(img);
-        orcs.setFitHeight(30);
-        orcs.setFitWidth(30);
-        orcs.setX(x);
-        orcs.setY(y);
-
-        orc=new Orc(orcs,x,y,50);
-        orcview.add(orcs);
-        anchorPane.getChildren().add(orcs);
-        GameObject g=new GameObject(orcs,x,y,50);
-        gamearray.add(g);
-
+        Platform newIsland = (Platform) data.generate_island(s, x, y);
+        anchorPane.getChildren().add(newIsland.getImg());
+        return newIsland.getWidth();
 
     }
 
-    void generate_chests(String c,int x)
-    {
-        System.out.println(" chest printed ");
-        int y=220-30;
-        Image img=new Image(c);
-        ImageView chests=new ImageView();
-        chests.setImage(img);
-        chests.setFitHeight(30);
-        chests.setFitWidth(30);
-        chests.setX(x);
-        chests.setY(y);
-
-        anchorPane.getChildren().add(chests);
-        GameObject g=new GameObject(chests,x,y,50);
-        gamearray.add(g);
-
+    void addOrcs(String o,double islandGap){
+        
+        Orc newOrc = (Orc) data.generate_orc(o, islandGap);
+        anchorPane.getChildren().add(newOrc.getImg());
     }
 
-    void generate_coins(int x,int coinpicker)
-    {
-        System.out.println(" coins printed ");
-        int y= 220 - 20 - ran.nextInt(100);
-        for(int i=0;i<coinpicker;i++) {
-            Image img = new Image("Coin.png");
-            ImageView coin = new ImageView();
-            coin.setImage(img);
-            coin.setFitHeight(20);
-            coin.setFitWidth(20);
-            coin.setX(x+i);
-            coin.setY(y);
-            anchorPane.getChildren().add(coin);
-            GameObject g = new GameObject(coin, x+i, y, 50);
-            gamearray.add(g);
-        }
+    // int generte_islansd(String s,int x)
+    // {
+    //     int y=220;
+    //     Image img=new Image(s);
+    //     ImageView island1=new ImageView();
+    //     island1.setImage(img);
+    //     island1.setFitHeight(50);
+    //     int width = 100 +  ran.nextInt(100);
+    //     island1.setFitWidth(width);
+    //     island1.setX(x);
+    //     island1.setY(y);
+    //     anchorPane.getChildren().add(island1);
+    //     GameObject g=new GameObject(island1,x,y,50, width);
+    //     gamearray.add(g);
 
-    }
+    //     data.updateplatformView(island1);
+
+    //     return width;
+    // }
+
+    // void generate_orcs(String o,int x)
+    // {
+
+    //     int y=220-30;
+    //     Image img=new Image(o);
+    //     ImageView orcs=new ImageView();
+    //     orcs.setImage(img);
+    //     orcs.setFitHeight(30);
+    //     orcs.setFitWidth(30);
+    //     orcs.setX(x);
+    //     orcs.setY(y);
+
+    //     Orc orc = new Orc(orcs,x,y,50, y);
+    //     data.updateorcsView(orcs);
+
+    //     anchorPane.getChildren().add(orcs);
+    //     GameObject g=new GameObject(orcs,x,y,50, y);
+    //     gamearray.add(g);
+
+
+    // }
+
+    // void generate_chests(String c,int x)
+    // {
+    //     System.out.println(" chest printed ");
+    //     int y=220-30;
+    //     Image img=new Image(c);
+    //     ImageView chests=new ImageView();
+    //     chests.setImage(img);
+    //     chests.setFitHeight(30);
+    //     chests.setFitWidth(30);
+    //     chests.setX(x);
+    //     chests.setY(y);
+
+    //     anchorPane.getChildren().add(chests);
+    //     GameObject g=new GameObject(chests,x,y,50, y);
+    //     gamearray.add(g);
+
+    // }
+
+    // void generate_coins(int x,int coinpicker)
+    // {
+    //     System.out.println(" coins printed ");
+    //     int y= 220 - 20 - ran.nextInt(100);
+    //     for(int i=0;i<coinpicker;i++) {
+    //         Image img = new Image("Coin.png");
+    //         ImageView coin = new ImageView();
+    //         coin.setImage(img);
+    //         coin.setFitHeight(20);
+    //         coin.setFitWidth(20);
+    //         coin.setX(x+i);
+    //         coin.setY(y);
+    //         anchorPane.getChildren().add(coin);
+    //         GameObject g = new GameObject(coin, x+i, y, 50, i);
+    //         gamearray.add(g);
+    //     }
+
+    // }
 
 }
