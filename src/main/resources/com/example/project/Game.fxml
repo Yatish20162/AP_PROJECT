@@ -5,6 +5,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="750.0" style="-fx-background-color: cyan;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.GameController">
@@ -30,5 +31,14 @@
          </image>
       </ImageView>
       <Label fx:id="note" layoutX="31.0" layoutY="70.0" prefHeight="18.0" prefWidth="57.0" text="GG!" />
+      <Pane fx:id="pause_menu" focusTraversable="true" layoutX="178.0" layoutY="200.0" prefHeight="34.0" prefWidth="448.0">
+         <children>
+            <Button layoutX="386.0" layoutY="2.0" mnemonicParsing="false" text="Music" />
+            <Button fx:id="resume" layoutX="21.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#doResume" text="Resume" />
+            <Button layoutX="135.0" layoutY="5.0" mnemonicParsing="false" text="Save" />
+            <Button layoutX="208.0" layoutY="5.0" mnemonicParsing="false" text="Feedback" />
+            <Button layoutX="305.0" layoutY="5.0" mnemonicParsing="false" text="Home" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

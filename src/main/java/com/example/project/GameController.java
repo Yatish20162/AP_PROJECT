@@ -30,6 +30,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -37,6 +38,9 @@ public class GameController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
+
+    @FXML // ResourceBundle that was given to the FXMLLoader
+    private Pane pause_menu;
 
     @FXML // fx:id="AnchorPane"
     private AnchorPane anchorPane; // Value injected by FXMLLoader
@@ -62,6 +66,8 @@ public class GameController {
     Data data;
     Random ran=new Random();
 
+    int isRunning = 0;
+
 
 
     // GameController(){
@@ -72,13 +78,41 @@ public class GameController {
     @FXML
     void doPause(MouseEvent event) throws IOException {
         System.out.println("Game Paused");
-        Parent root= FXMLLoader.load(getClass().getResource("Pause.fxml"));
 
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+
+        // Parent root= FXMLLoader.load(getClass().getResource("Pause.fxml"));
+
+        // Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        // Scene scene = new Scene(root);
+        // stage.setScene(scene);
+        // stage.show();
+
+        isRunning = 1;
+        System.out.println(isRunning);
+
+        pause_menu.setVisible(true);
     }
+
+    @FXML
+    void doResume(MouseEvent event) throws IOException {
+        System.out.println("Game Resumed");
+
+
+        // Parent root= FXMLLoader.load(getClass().getResource("Pause.fxml"));
+
+        // Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        // Scene scene = new Scene(root);
+        // stage.setScene(scene);
+        // stage.show();
+
+        // isRunning = true;
+
+
+        pause_menu.setVisible(false);
+    }
+
+
+
 
     AnimationTimer collisoionTime=new AnimationTimer() {
         @Override
@@ -95,12 +129,12 @@ public class GameController {
             if(heroImg.getBoundsInParent().intersects(img.get(i).getImg().getBoundsInParent()))
             {
                hero.upp_steps=100;
-                System.out.println("Collision" + i);
+                // System.out.println("Collision" + i);
             }
             for(int j=0;j<orcsview.size();j++){
                
                 if (orcsview.get(j).getImg().getBoundsInParent().intersects(img.get(i).getImg().getBoundsInParent())) {
-                    System.out.println("ORCS COLLIDED");
+                    // System.out.println("ORCS COLLIDED");
                     orcsview.get(j).upp_steps = 50;
                 }
             }
@@ -111,7 +145,7 @@ public class GameController {
                 if (heroImg.getBoundsInParent().intersects(coinsview.get(j).getImg().getBoundsInParent())) {
                     //coins = hero.coins;
                     hero.updateCoins(coinsview.get(j).getValue());
-                    System.out.println("COINS " + hero.getCoins());
+                    // System.out.println("COINS " + hero.getCoins());
 
 
                     coins.setText(Double.toString(hero.getCoins()));
@@ -124,7 +158,7 @@ public class GameController {
             for(int j=0;j<chestview.size();j++){
                
                 if (chestview.get(j).getImg().getBoundsInParent().intersects(heroImg.getBoundsInParent())) {
-                    System.out.println("Chesttt COLLIDED");
+                    // System.out.println("Chesttt COLLIDED");
 
                     Image  whichone = new Image("coinopen.png");
 
@@ -162,7 +196,7 @@ public class GameController {
     }
     
 
-    void initiate() {
+    void initiate2() {
 
         data = new Data();
         
@@ -239,13 +273,15 @@ public class GameController {
     void start(Scene scene)
     {
 
+        System.out.println(" main firse dhappa kar gya");
+
         collisoionTime.start();
 
         AnimationTimer timer = new AnimationTimer(){
             @Override
             public void handle(long l){
 
-                System.out.println(hero.getImg().getBoundsInParent().getMaxY() + " is YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+                // System.out.println(hero.getImg().getBoundsInParent().getMaxY() + " is YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
 
                 if(hero.getImg().getBoundsInParent().getMaxY() > 250){
 
@@ -276,62 +312,52 @@ public class GameController {
                 // if(hero.img.getY()<=-200)
                 // {hero.setAlive(false);}
 
-                if( event.getCode()==KeyCode.getKeyCode("Z") )
-                {
-                    System.out.println("Pagal hai kya???????????");
-
-                    
-
-                    for(int i=0;i < data.platformObjects.size();i++)
+                System.out.println(isRunning);
+                    if( hero.getImg().getBoundsInParent().getMaxY() < 250 && event.getCode()==KeyCode.getKeyCode("Z") )
                     {
-                        data.platformObjects.get(i).shiftleft();
+                        System.out.println("Pagal hai kya???????????");
+
+                        for(int i=0;i < data.platformObjects.size();i++)
+                        {
+                            data.platformObjects.get(i).shiftleft();
+                        }
+
+                        for(int i=0;i< data.orcsObjects.size();i++)
+                        {
+                            data.orcsObjects.get(i).shiftleft();
+                        }
+
+                        for(int i=0;i< data.coinObjects.size();i++)
+                        {
+                            data.coinObjects.get(i).shiftleft();
+                        }
+
+                        for(int i=0;i< data.chestObjects.size();i++)
+                        {
+                            data.chestObjects.get(i).shiftleft();
+                        }
+
+                        for(int i=0; i < data.getObstruction().size();i++)
+                        {
+                            data.getObstruction().get(i).shiftleft();
+                        }
                     }
-
-                    for(int i=0;i< data.orcsObjects.size();i++)
-                    {
-                        data.orcsObjects.get(i).shiftleft();
-                    }
-
-                    for(int i=0;i< data.coinObjects.size();i++)
-                    {
-                        data.coinObjects.get(i).shiftleft();
-                    }
-
-                    for(int i=0;i< data.chestObjects.size();i++)
-                    {
-                        data.chestObjects.get(i).shiftleft();
-                    }
-
-                    for(int i=0; i < data.getObstruction().size();i++)
-                    {
-                        data.getObstruction().get(i).shiftleft();
-                    }
-
-
                 }
-                else
-                {
-                    System.out.println("Exited");
-
-                    gameover.setVisible(true);
-
-
-
-                }
-            }
         });
 
         willhero=(ImageView) scene.lookup("#willhero") ;
         coins=(Label) scene.lookup("#coins") ;
         note=(Label) scene.lookup("#note") ;
 
+        pause_menu=(Pane) scene.lookup("#pause_menu") ;
+        pause_menu.setVisible(false);
 
         anchorPane=(AnchorPane) scene.lookup("#anchorPane");
 
         gameover = (ImageView) scene.lookup("#gameover");
         gameover.setVisible(false);
 
-        this.initiate();
+        this.initiate2();
 
     }
 
