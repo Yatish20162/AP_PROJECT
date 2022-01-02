@@ -104,15 +104,10 @@ public class GameController {
             for(int j=0;j< coinsview.size();j++) {
                 if (heroImg.getBoundsInParent().intersects(coinsview.get(j).getImg().getBoundsInParent())) {
                     //coins = hero.coins;
-                    
                     hero.updateCoins(coinsview.get(j).getValue());
-                    System.out.println("     COINS    " + hero.getCoins());
+                    System.out.println("COINS " + hero.getCoins());
                     coinsview.get(j).getImg().setVisible(false);
                     coinsview.get(j).setValue(0);
-                    
-
-
-
                 }
             }
         }
