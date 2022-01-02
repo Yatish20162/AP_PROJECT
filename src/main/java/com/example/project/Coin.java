@@ -11,7 +11,12 @@ public class Coin extends GameObject{
         super(i, x, y, width, height);
         //TODO Auto-generated constructor stub
         this.value = val;
-    }   
+    }
+
+    @Override
+    public ImageView getImg() {
+        return super.getImg();
+    }
 
     public double getValue() {
         return value;

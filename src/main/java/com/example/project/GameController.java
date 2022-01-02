@@ -76,12 +76,12 @@ public class GameController {
     AnimationTimer collisoionTime=new AnimationTimer() {
         @Override
         public void handle(long timestamp) {
-            checkCollisions(willhero,data.getOrcsView(),data.getPlatformView());
-            System.out.println(";oll");
+            checkCollisions(willhero,data.getOrcsView(),data.getPlatformView(),data.getCoinObjects());
+            //System.out.println(";oll");
         }
     };
 
-    void checkCollisions(ImageView heroImg,ArrayList<Orcs> orcsview,ArrayList<GameObject> img)
+    void checkCollisions(ImageView heroImg,ArrayList<Orcs> orcsview,ArrayList<GameObject> img,ArrayList<Coin> coinsview)
     {
         for(int i=0;i<img.size();i++)
         {
@@ -97,7 +97,19 @@ public class GameController {
                     orcsview.get(j).upp_steps = 50;
                 }
             }
+
+            for(int j=0;j< coinsview.size();j++) {
+                if (heroImg.getBoundsInParent().intersects(coinsview.get(j).getImg().getBoundsInParent())) {
+                    hero.coins++;
+                    //coins = hero.coins;
+
+                    System.out.println("     COINS    ");
+                }
+            }
         }
+
+
+
     }
     
 
@@ -164,8 +176,6 @@ public class GameController {
 
 
         //hero.animate();
-
-
 
 
     }

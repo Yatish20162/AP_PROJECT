@@ -107,10 +107,8 @@ public class Data {
     Coin generate_coins(double x, double y, double val){
         
         double ly= 220 -  y;
-
         Image img=new Image("Coin.png");
         ImageView coin = new ImageView();
-
         coin.setImage(img);
         coin.setFitHeight(20);
         coin.setFitWidth(20);
@@ -154,108 +152,9 @@ public class Data {
             chestObjects.add(cch);
             return cch;
         }       
-    } 
+    }
 
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 
     public ArrayList<String> getPlatformList() {
@@ -297,6 +196,10 @@ public class Data {
     }
     public ArrayList<GameObject> getPlatformView() {
         return platformObjects;
+    }
+
+    public ArrayList<Coin> getCoinObjects() {
+        return coinObjects;
     }
 
     public double getNumIslands() {
