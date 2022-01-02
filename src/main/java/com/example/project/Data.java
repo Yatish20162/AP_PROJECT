@@ -19,7 +19,7 @@ public class Data {
 
 
     ArrayList<GameObject> platformObjects;
-    ArrayList<Orc> orcsObjects;
+    ArrayList<Orcs> orcsObjects;
     ArrayList<Chest> chestObjects;
     ArrayList<Coin> coinObjects;
 
@@ -32,7 +32,7 @@ public class Data {
         
 
         platformObjects = new ArrayList<GameObject>();
-        orcsObjects = new ArrayList<Orc>();
+        orcsObjects = new ArrayList<Orcs>();
         coinObjects = new ArrayList<Coin>();
         chestObjects = new ArrayList<Chest>();
 
@@ -65,7 +65,7 @@ public class Data {
     } 
 
     
-    Orc generate_orc(String o, double x){
+    Orcs generate_orc(String o, double x){
         
         int ly=220-30;
 
@@ -77,7 +77,7 @@ public class Data {
         orcs.setX(x);
         orcs.setY(ly);
 
-        Orc orc = new Orc(orcs,x,ly,50,50);
+        Orcs orc = new Orc(orcs,x,ly,50,50);
         orcsObjects.add(orc);
 
         return orc;
@@ -165,6 +165,27 @@ public class Data {
     //     gamearray.add(g);
         
     } 
+
+
+    Boss_orc generate_boss(double x){
+
+        int ly=220-30;
+
+        Image img=new Image("OrcBoss.png");
+        ImageView orcs = new ImageView();
+        orcs.setImage(img);
+        orcs.setFitHeight(60);
+        orcs.setFitWidth(60);
+        orcs.setX(x);
+        orcs.setY(ly);
+
+        Boss_orc orc = new Boss_orc(orcs,x,ly,50,50);
+        orcsObjects.add(orc);
+
+        return orc;
+        
+
+    }
 
 
 
@@ -299,7 +320,7 @@ public class Data {
     public void setOrcsView(ArrayList<ImageView> orcsView) {
         this.orcsObjects = orcsObjects;
     }
-    public ArrayList<Orc> getOrcsView() {
+    public ArrayList<Orcs> getOrcsView() {
         return orcsObjects;
     }
     public ArrayList<GameObject> getPlatformView() {

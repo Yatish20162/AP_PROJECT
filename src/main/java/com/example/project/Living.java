@@ -17,6 +17,13 @@ public class Living extends GameObject {
 
 
 
+    public Living(ImageView i, double x, double y, double widthx, double height) {
+        super(i, x, y, widthx, height );
+
+    }
+
+
+
     public double getJumpHeight() {
         return jumpHeight;
     }

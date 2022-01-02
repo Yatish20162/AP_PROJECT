@@ -81,7 +81,7 @@ public class GameController {
         }
     };
 
-    void checkCollisions(ImageView heroImg,ArrayList<Orc> orcsview,ArrayList<GameObject> img)
+    void checkCollisions(ImageView heroImg,ArrayList<Orcs> orcsview,ArrayList<GameObject> img)
     {
         for(int i=0;i<img.size();i++)
         {
@@ -127,7 +127,7 @@ public class GameController {
             String s = data.getPlatformList().get(picker);
             //TODO: #1 make index getter
 
-            if(i>0){
+            if(i>0 && i< numIslands-4){
                 if(orcgetter < 10)
                 {
                     System.out.println("this is djkvfnkjajdb"+ Integer.toString(orcpicker));
@@ -144,6 +144,12 @@ public class GameController {
                     addCoins(islandGap+70,220 - 20 - ran.nextInt(100));
                 }
             }
+
+            if(i == numIslands-3){
+                addBoss(islandGap);
+            }
+
+
             picker = ran.nextInt(10);
             orcpicker=ran.nextInt(4);
             orcgetter=ran.nextInt(20);
@@ -220,6 +226,11 @@ public class GameController {
         anchorPane.getChildren().add(newIsland.getImg());
         return newIsland.getWidth();
 
+    }
+
+    void addBoss(double islandGap){
+        Boss_orc newOrc = data.generate_boss(islandGap);
+        anchorPane.getChildren().add(newOrc.getImg());
     }
 
     void addChest(double islandGap){

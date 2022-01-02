@@ -7,7 +7,7 @@ import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
-public class Orc extends GameObject {
+public class Orc extends Orcs {
 
     int upp_steps = 0;
 

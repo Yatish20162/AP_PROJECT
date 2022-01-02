@@ -5,10 +5,10 @@ public class Boss_orc extends Orcs {
 
     public double health;
 
-    Boss_orc(ImageView i, double x, double y, double widthx, double height, double jumpHeight, boolean isAlive, int size , int color, int health) {
-        super(i, x, y, widthx,height,jumpHeight, isAlive, size, color);
+    Boss_orc(ImageView i, double x, double y, double widthx, double height) {
+        super(i, x, y, widthx, height);
         //TODO Auto-generated constructor stub
-        this.health = health;
+        this.health = 30;
     }
 
 
