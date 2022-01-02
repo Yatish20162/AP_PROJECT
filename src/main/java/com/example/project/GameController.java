@@ -113,7 +113,7 @@ public class GameController {
         int orcpicker=ran.nextInt(4);
         int orcgetter=ran.nextInt(20);
         int chestpicker=ran.nextInt(2);
-        int chestgetter=ran.nextInt(20);
+        int chestgetter=ran.nextInt(40);
         int coinpicker=ran.nextInt(10);
 
         double islandGap = 0;
@@ -135,19 +135,20 @@ public class GameController {
                     addOrcs(o,islandGap);
                 }
 
-                // if(chestgetter > 10)
-                // {
-                //     generate_chests(c,islandGap+50);
-                // }
-
-                addCoins(islandGap+70,220 - 20 - ran.nextInt(100));
-
+                if(chestgetter < 10)
+                {
+                    addChest(islandGap);
+                }
+                
+                if(i%5==0){
+                    addCoins(islandGap+70,220 - 20 - ran.nextInt(100));
+                }
             }
             picker = ran.nextInt(10);
             orcpicker=ran.nextInt(4);
             orcgetter=ran.nextInt(20);
             // chestpicker=ran.nextInt(2);
-            // chestgetter=ran.nextInt(20);
+            chestgetter=ran.nextInt(40);
 
             double old = addIsland(s,islandGap,220);
             double  newly = old + islandGap +  ran.nextInt(150);
@@ -190,6 +191,13 @@ public class GameController {
                     {
                         data.coinObjects.get(i).shiftleft();
                     }
+
+                    for(int i=0;i< data.chestObjects.size();i++)
+                    {
+                        data.chestObjects.get(i).shiftleft();
+                    }
+
+
                 }
                 else
                 {
@@ -212,6 +220,13 @@ public class GameController {
         anchorPane.getChildren().add(newIsland.getImg());
         return newIsland.getWidth();
 
+    }
+
+    void addChest(double islandGap){
+
+        boolean rand = ran.nextBoolean();        
+        Chest newchest =  data.generate_chest(islandGap, rand);
+        anchorPane.getChildren().add(newchest.getImg());
     }
 
     void addOrcs(String o,double islandGap){

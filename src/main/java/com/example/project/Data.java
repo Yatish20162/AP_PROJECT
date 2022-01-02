@@ -20,7 +20,7 @@ public class Data {
 
     ArrayList<GameObject> platformObjects;
     ArrayList<Orc> orcsObjects;
-    ArrayList<GameObject> chestObjects;
+    ArrayList<Chest> chestObjects;
     ArrayList<Coin> coinObjects;
 
 
@@ -34,6 +34,7 @@ public class Data {
         platformObjects = new ArrayList<GameObject>();
         orcsObjects = new ArrayList<Orc>();
         coinObjects = new ArrayList<Coin>();
+        chestObjects = new ArrayList<Chest>();
 
 
         numIslands = 40;
@@ -113,6 +114,55 @@ public class Data {
     //         anchorPane.getChildren().add(coin);
     //         GameObject g = new GameObject(coin, x+i, y, 50, i);
     //         gamearray.add(g);
+        
+    } 
+
+
+    Chest generate_chest(double x, boolean type){
+        
+        int ly=220-30;
+        Image img;
+
+        if(type){
+            img=new Image("ChestClosed.png");
+        }
+        else{
+            img=new Image("coinclose.png");
+        }
+
+        ImageView chest = new ImageView();
+        chest.setImage(img);
+        chest.setFitHeight(30);
+        chest.setFitWidth(30);
+        chest.setX(x);
+        chest.setY(ly);
+
+        if(type){
+            Weapon_Chest wch=new Weapon_Chest(chest,x,(double)ly,(double)30,(double)30);
+            chestObjects.add(wch);
+            return wch;
+        }
+        else{
+         
+            Coin_Chest cch = new Coin_Chest(chest,x,(double)ly,(double)30,(double)30);
+            chestObjects.add(cch);
+            return cch;
+        }   
+        
+
+    //     System.out.println(" chest printed ");
+    //     int y=220-30;
+    //     Image img=new Image(c);
+    //     ImageView chests=new ImageView();
+    //     chests.setImage(img);
+    //     chests.setFitHeight(30);
+    //     chests.setFitWidth(30);
+    //     chests.setX(x);
+    //     chests.setY(y);
+
+    //     anchorPane.getChildren().add(chests);
+    //     GameObject g=new GameObject(chests,x,y,50, y);
+    //     gamearray.add(g);
         
     } 
 

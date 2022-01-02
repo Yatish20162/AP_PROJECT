@@ -6,10 +6,10 @@ public class Weapon_Chest extends Chest{
 
     private Weapon weapon;
 
-    Weapon_Chest(ImageView i,double x, double y, double widthx, double height, boolean opened, Location location, Weapon weapon) {
-        super(i,x,y,widthx,height,opened);
+    Weapon_Chest(ImageView i,double x, double y, double widthx, double height) {
+        super(i,x,y,widthx,height,false);
 
-        this.weapon = weapon;
+        // this.weapon = new Weapon(x,y,widthx,height);
 
     }
 

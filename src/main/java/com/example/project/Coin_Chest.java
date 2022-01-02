@@ -6,10 +6,10 @@ public class Coin_Chest extends Chest {
     
     private int chest_coins;
     
-    Coin_Chest(ImageView i, double x, double y, double widthx, double height, boolean opened, Location location, Weapon weapon) {
-        super(i,x,y,widthx,height,opened);
+    Coin_Chest(ImageView i, double x, double y, double widthx, double height) {
+        super(i,x,y,widthx,height,false);
 
-        this.chest_coins = chest_coins;
+        this.chest_coins = (int)(Math.random() * (10+1 -1)) + 1;
 
     }
 
