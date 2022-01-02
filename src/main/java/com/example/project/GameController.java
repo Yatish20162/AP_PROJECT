@@ -66,7 +66,7 @@ public class GameController {
     Data data;
     Random ran=new Random();
 
-    int isRunning = 0;
+    Boolean isRunning = true;
 
 
 
@@ -87,7 +87,7 @@ public class GameController {
         // stage.setScene(scene);
         // stage.show();
 
-        isRunning = 1;
+        isRunning = false;
         System.out.println(isRunning);
 
         pause_menu.setVisible(true);
@@ -105,11 +105,33 @@ public class GameController {
         // stage.setScene(scene);
         // stage.show();
 
-        // isRunning = true;
+        isRunning = true;
 
 
         pause_menu.setVisible(false);
     }
+
+
+    @FXML
+    void deFeedback(MouseEvent event) throws IOException {
+        System.out.println("Game Feedback");
+
+        Runtime rt = Runtime.getRuntime();
+        String url = "https://forms.gle/s3dpj9nqwmJuyc2H7";
+        rt.exec("rundll32 url.dll,FileProtocolHandler " + url);
+
+
+        // Parent root= FXMLLoader.load(getClass().getResource("Pause.fxml"));
+
+        // Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        // Scene scene = new Scene(root);
+        // stage.setScene(scene);
+        // stage.show();
+
+        // isRunning = true;
+
+    }
+
 
 
 
@@ -312,8 +334,7 @@ public class GameController {
                 // if(hero.img.getY()<=-200)
                 // {hero.setAlive(false);}
 
-                System.out.println(isRunning);
-                    if( hero.getImg().getBoundsInParent().getMaxY() < 250 && event.getCode()==KeyCode.getKeyCode("Z") )
+                    if( isRunning  && hero.getImg().getBoundsInParent().getMaxY() < 250 && event.getCode()==KeyCode.getKeyCode("Z") )
                     {
                         System.out.println("Pagal hai kya???????????");
 
@@ -386,6 +407,9 @@ public class GameController {
         Chest newchest =  data.generate_chest(islandGap + 50, rand);
         anchorPane.getChildren().add(newchest.getImg());
     }
+
+
+    
 
     void addOrcs(String o,double islandGap){
         

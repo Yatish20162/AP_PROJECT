@@ -36,7 +36,7 @@
             <Button layoutX="386.0" layoutY="2.0" mnemonicParsing="false" text="Music" />
             <Button fx:id="resume" layoutX="21.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#doResume" text="Resume" />
             <Button layoutX="135.0" layoutY="5.0" mnemonicParsing="false" text="Save" />
-            <Button layoutX="208.0" layoutY="5.0" mnemonicParsing="false" text="Feedback" />
+            <Button fx:id="feedback" layoutX="208.0" layoutY="5.0" mnemonicParsing="false" onMouseClicked="#deFeedback" text="Feedback" />
             <Button layoutX="305.0" layoutY="5.0" mnemonicParsing="false" text="Home" />
          </children>
       </Pane>
