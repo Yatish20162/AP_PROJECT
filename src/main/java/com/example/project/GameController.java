@@ -56,6 +56,12 @@ public class GameController {
     Data data;
     Random ran=new Random();
 
+
+    // GameController(){
+    //     data = new Data();
+    //     ran=new Random();
+    // }
+
     @FXML
     void doPause(MouseEvent event) throws IOException {
         System.out.println("Game Paused");
@@ -67,13 +73,13 @@ public class GameController {
         stage.show();
     }
 
-    AnimationTimer collisoionTime=new AnimationTimer() {
-        @Override
-        public void handle(long timestamp) {
-            // checkCollisions(willhero,data.getOrcsView(),data.getPlatformView());
-            System.out.println(";oll");
-        }
-    };
+    // AnimationTimer collisoionTime=new AnimationTimer() {
+    //     @Override
+    //     public void handle(long timestamp) {
+    //         // checkCollisions(willhero,data.getOrcsView(),data.getPlatformView());
+    //         System.out.println(";oll");
+    //     }
+    // };
 
     // void checkCollisions(ImageView heroImg,ArrayList<GameObject> orcsview,ArrayList<GameObject> img)
     // {
@@ -97,12 +103,13 @@ public class GameController {
 
     void initiate(){
 
+        data = new Data();
         
-
         double numIslands = data.getNumIslands();
 
+
         int picker = ran.nextInt(10);
-        int orcpicker=ran.nextInt(5);
+        int orcpicker=ran.nextInt(4);
         int orcgetter=ran.nextInt(20);
         int chestpicker=ran.nextInt(2);
         int chestgetter=ran.nextInt(20);
@@ -113,17 +120,16 @@ public class GameController {
         hero=new Hero(willhero,0,300,20, islandGap);
 
 
-
         for(int i=0; i<numIslands; i++){
             System.out.println(islandGap);
 
             String s = data.getPlatformList().get(picker);
-            String c = data.greenorcsList.get(chestpicker);
             //TODO: #1 make index getter
 
             if(i>0){
                 if(orcgetter < 10)
                 {
+                    System.out.println("this is djkvfnkjajdb"+ Integer.toString(orcpicker));
                     String o = data.getGreenorcsList().get(orcpicker);
                     addOrcs(o,islandGap);
                 }
@@ -140,7 +146,7 @@ public class GameController {
                 // }
             }
             picker = ran.nextInt(10);
-            orcpicker=ran.nextInt(5);
+            orcpicker=ran.nextInt(4);
             orcgetter=ran.nextInt(20);
             // chestpicker=ran.nextInt(2);
             // chestgetter=ran.nextInt(20);
@@ -162,26 +168,26 @@ public class GameController {
 
     void start(Scene scene)
     {
-        collisoionTime.start();
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
+        // collisoionTime.start();
+        // scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+        //     @Override
+        //     public void handle(KeyEvent event) {
 
-                System.out.println(hero.img.getY());
-                if( hero.img.getY()<=0 && event.getCode()==KeyCode.getKeyCode("Z") )
-                {
+        //         System.out.println(hero.img.getY());
+        //         if( hero.img.getY()<=0 && event.getCode()==KeyCode.getKeyCode("Z") )
+        //         {
 
-                    for(int i=0;i< gamearray.size();i++)
-                    {
-                        gamearray.get(i).shiftleft();
-                    }
-                }
-                else
-                {
-                    System.out.println("Exited");
-                }
-            }
-        });
+        //             for(int i=0;i< gamearray.size();i++)
+        //             {
+        //                 gamearray.get(i).shiftleft();
+        //             }
+        //         }
+        //         else
+        //         {
+        //             System.out.println("Exited");
+        //         }
+        //     }
+        // });
 
         willhero=(ImageView) scene.lookup("#willhero") ;
         anchorPane=(AnchorPane) scene.lookup("#anchorPane");

@@ -28,6 +28,10 @@ public class Data {
         redorcsList = new ArrayList<String>((Arrays.asList("RedOrc1.png","RedOrc2.png")));
         chests =new ArrayList<String>((Arrays.asList("ChestClosed.png","coinclose.png")));
         
+
+        platformObjects = new ArrayList<GameObject>();
+        orcsObjects = new ArrayList<GameObject>();
+
         numIslands = 80;
     }
 
