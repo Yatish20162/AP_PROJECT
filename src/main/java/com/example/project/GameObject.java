@@ -27,4 +27,12 @@ public class GameObject {
         this.location.x=minX;
     }
 
+
+    public Location getLocation() {
+        return location;
+    }
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
 }

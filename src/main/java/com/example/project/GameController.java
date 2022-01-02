@@ -99,11 +99,12 @@ public class GameController {
                hero.upp_steps=100;
                 System.out.println("Collision" + i);
             }
-
-            if (orcsview.get(i).getBoundsInParent().intersects(img.get(i).getBoundsInParent())) {
-                System.out.println("ORCS COLLIDED");
-                orc.upp_steps = 50;
-            }
+            // if(orcsview.get(i) != null){
+            // if (orcsview.get(i).getBoundsInParent().intersects(img.get(i).getBoundsInParent())) {
+            //     System.out.println("ORCS COLLIDED");
+            //     orc.upp_steps = 50;
+            // }
+            // }
         }
 
 

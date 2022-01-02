@@ -1,7 +1,11 @@
 package com.example.project;
 
 public class Location {
-    int x;int y;
+    int minx;
+    int miny;
+    int x;
+    int y;
+    
     Location(int x,int y)
     {
         this.x=x;
