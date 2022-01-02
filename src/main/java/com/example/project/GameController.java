@@ -107,6 +107,11 @@ public class GameController {
                     
                     hero.updateCoins(coinsview.get(j).getValue());
                     System.out.println("     COINS    " + hero.getCoins());
+                    coinsview.get(j).getImg().setVisible(false);
+                    coinsview.get(j).setValue(0);
+                    
+
+
 
                 }
             }
@@ -195,7 +200,11 @@ public class GameController {
             public void handle(KeyEvent event) {
 
                 System.out.println(hero.img.getY());
-                if( hero.img.getY()<=0 && event.getCode()==KeyCode.getKeyCode("Z") )
+
+                if(hero.img.getY()<=0)
+                {hero.setAlive(false);}
+
+                if(hero.img.getY()<=0 && event.getCode()==KeyCode.getKeyCode("Z") )
                 {
                     System.out.println("Pagal hai kya???????????");
 
@@ -238,7 +247,7 @@ public class GameController {
 
         gameover = (ImageView) scene.lookup("#gameover");
         gameover.setVisible(false);
-        
+
         this.initiate();
 
     }

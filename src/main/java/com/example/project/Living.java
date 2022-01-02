@@ -7,12 +7,12 @@ public class Living extends GameObject {
     private double jumpHeight;
     private boolean isAlive;
 
-    Living(ImageView i, double x, double y, double width, double height, double jumpHeight, boolean isAlive) {
+    Living(ImageView i, double x, double y, double width, double height, double jumpHeight) {
         super(i, x, y, width, height );
         //TODO Auto-generated constructor stub
 
         this.jumpHeight = jumpHeight;
-        this.isAlive = isAlive;
+        this.isAlive = true;
     }
 
 
@@ -21,6 +21,18 @@ public class Living extends GameObject {
         super(i, x, y, widthx, height );
 
     }
+
+
+    public boolean getAlive() {
+        return isAlive;
+    }
+   
+
+
+    public void setAlive(boolean isAlive) {
+        this.isAlive = isAlive;
+    }
+
 
 
 

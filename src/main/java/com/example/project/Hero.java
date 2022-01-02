@@ -9,7 +9,7 @@ import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
-public class Hero extends GameObject{
+public class Hero extends Living{
 
     Helmet helmet;
     String name;
