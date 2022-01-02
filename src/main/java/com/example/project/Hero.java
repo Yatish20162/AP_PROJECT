@@ -46,6 +46,12 @@ public class Hero extends GameObject{
     public void setCoins(double coins) {
         this.coins = coins;
     }
+
+    public void updateCoins(double coins) {
+        this.coins+=coins;
+    }
+
+
     public void setName(String name) {
         this.name = name;
     }
