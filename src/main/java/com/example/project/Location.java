@@ -19,6 +19,16 @@ public class Location {
     }
 
 
+
+    public double getMin_x() {
+        return min_x;
+    }
+
+    public double getMax_x() {
+        return max_x;
+    }
+
+
     public void setMax_x(double max_x) {
         this.max_x = max_x;
     }
@@ -28,7 +38,7 @@ public class Location {
     }
 
     public void setMin_x(double min_x) {
-        this.min_x = min_x;
+        this.min_x = this.min_x - min_x;
     }
     public void setMin_y(double min_y) {
         this.min_y = min_y;

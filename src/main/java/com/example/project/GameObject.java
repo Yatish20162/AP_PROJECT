@@ -18,10 +18,11 @@ public class GameObject {
 
     void shiftleft()
     {
-        this.minX-=10;
-        this.maxX-=10;
-        img.setX(minX);
-        this.location.setMin_x(minX);;
+        double newValue = this.location.getMin_x() - 30; 
+        img.setX(newValue);
+        // img.setX(this.location.min_x - 10);
+        double newMax =  newValue + this.location.getWidth();
+        this.location.setX(newValue, newMax);
     }
 
 
