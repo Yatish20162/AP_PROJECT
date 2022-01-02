@@ -215,7 +215,6 @@ public class GameController {
         AnimationTimer timer = new AnimationTimer(){
             @Override
             public void handle(long l){
-                
 
                 System.out.println(hero.getImg().getBoundsInParent().getMaxY() + " is YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
 
@@ -243,10 +242,7 @@ public class GameController {
                 // if(hero.img.getY()<=-200)
                 // {hero.setAlive(false);}
 
-
-               
-
-                if(hero.img.getY()<=100 && event.getCode()==KeyCode.getKeyCode("Z") )
+                if( event.getCode()==KeyCode.getKeyCode("Z") )
                 {
                     System.out.println("Pagal hai kya???????????");
 
