@@ -205,11 +205,29 @@ public class GameController {
 
                     obstructions.get(j).getImg().setImage(whichlone);
 
-                    hero.updateHealth(obstructions.get(j).getEffect());
+                                        // hero.updateHealth(obstructions.get(j).getEffect());
 
-                    note.setText("H: " + Double.toString( hero.getHealth()));
+                    // note.setText("H: " + Double.toString( hero.getHealth()));
 
-                    obstructions.get(j).setEffect(0);
+                    // obstructions.get(j).setEffect(0);
+
+                    hero.setAlive(false);
+
+                    gameover.setVisible(true);
+
+
+
+                }
+            }
+
+            for(int j=0;j<orcsview.size();j++){
+               
+                if (orcsview.get(j).getImg().getBoundsInParent().intersects(heroImg.getBoundsInParent())) {
+                    System.out.println("hERO MEWT oRG");
+
+                    gameover.setVisible(true);
+
+                    hero.setAlive(false);
 
 
                 }
@@ -313,7 +331,7 @@ public class GameController {
                     
                 }
 
-                if(hero.getHealth() <= 6){
+                if(hero.getAlive()){
                     System.out.println("Low Health!!!!!!!!!!!!!!!!!");
 
                 }
@@ -334,7 +352,7 @@ public class GameController {
                 // if(hero.img.getY()<=-200)
                 // {hero.setAlive(false);}
 
-                    if( isRunning  && hero.getImg().getBoundsInParent().getMaxY() < 250 && event.getCode()==KeyCode.getKeyCode("Z") )
+                    if( hero.getImg().getBoundsInParent().getMaxY() < 250 && event.getCode()==KeyCode.getKeyCode("Z") )
                     {
                         System.out.println("Pagal hai kya???????????");
 
