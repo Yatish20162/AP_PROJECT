@@ -50,6 +50,9 @@ public class GameController {
     @FXML // fx:id="willhero"
     private ImageView willhero; // Value injected by FXMLLoader
 
+    @FXML
+    private ImageView gameover;
+
     ArrayList<GameObject> gamearray=new ArrayList<GameObject>();
 
     Hero hero;
@@ -115,7 +118,7 @@ public class GameController {
     
 
 
-    void initiate(){
+    void initiate() {
 
         data = new Data();
         
@@ -132,6 +135,8 @@ public class GameController {
         double islandGap = 0;
 
         hero=new Hero(willhero,0,300,20, islandGap);
+
+      
 
 
         for(int i=0; i<numIslands; i++){
@@ -219,6 +224,11 @@ public class GameController {
                 else
                 {
                     System.out.println("Exited");
+
+                    gameover.setVisible(true);
+
+
+
                 }
             }
         });
@@ -226,6 +236,9 @@ public class GameController {
         willhero=(ImageView) scene.lookup("#willhero") ;
         anchorPane=(AnchorPane) scene.lookup("#anchorPane");
 
+        gameover = (ImageView) scene.lookup("#gameover");
+        gameover.setVisible(false);
+        
         this.initiate();
 
     }
