@@ -73,31 +73,32 @@ public class GameController {
         stage.show();
     }
 
-    // AnimationTimer collisoionTime=new AnimationTimer() {
-    //     @Override
-    //     public void handle(long timestamp) {
-    //         // checkCollisions(willhero,data.getOrcsView(),data.getPlatformView());
-    //         System.out.println(";oll");
-    //     }
-    // };
+    AnimationTimer collisoionTime=new AnimationTimer() {
+        @Override
+        public void handle(long timestamp) {
+            checkCollisions(willhero,data.getOrcsView(),data.getPlatformView());
+            System.out.println(";oll");
+        }
+    };
 
-    // void checkCollisions(ImageView heroImg,ArrayList<GameObject> orcsview,ArrayList<GameObject> img)
-    // {
-    //     for(int i=0;i<img.size();i++)
-    //     {
-    //         if(heroImg.getBoundsInParent().intersects(img.get(i).getImg().getBoundsInParent()))
-    //         {
-    //            hero.upp_steps=100;
-    //             System.out.println("Collision" + i);
-    //         }
-    //         // if(orcsview.get(i) != null){
-    //         // if (orcsview.get(i).getBoundsInParent().intersects(img.get(i).getBoundsInParent())) {
-    //         //     System.out.println("ORCS COLLIDED");
-    //         //     orc.upp_steps = 50;
-    //         // }
-    //         // }
-    //     }
-    // }
+    void checkCollisions(ImageView heroImg,ArrayList<Orc> orcsview,ArrayList<GameObject> img)
+    {
+        for(int i=0;i<img.size();i++)
+        {
+            if(heroImg.getBoundsInParent().intersects(img.get(i).getImg().getBoundsInParent()))
+            {
+               hero.upp_steps=100;
+                System.out.println("Collision" + i);
+            }
+            for(int j=0;j<orcsview.size();j++){
+               
+                if (orcsview.get(j).getImg().getBoundsInParent().intersects(img.get(i).getImg().getBoundsInParent())) {
+                    System.out.println("ORCS COLLIDED");
+                    orcsview.get(j).upp_steps = 50;
+                }
+            }
+        }
+    }
     
 
 
@@ -168,26 +169,28 @@ public class GameController {
 
     void start(Scene scene)
     {
-        // collisoionTime.start();
-        // scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-        //     @Override
-        //     public void handle(KeyEvent event) {
+        collisoionTime.start();
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
 
-        //         System.out.println(hero.img.getY());
-        //         if( hero.img.getY()<=0 && event.getCode()==KeyCode.getKeyCode("Z") )
-        //         {
+                System.out.println(hero.img.getY());
+                if( hero.img.getY()<=0 && event.getCode()==KeyCode.getKeyCode("Z") )
+                {
+                    System.out.println("Pagal hai kya???????????");
 
-        //             for(int i=0;i< gamearray.size();i++)
-        //             {
-        //                 gamearray.get(i).shiftleft();
-        //             }
-        //         }
-        //         else
-        //         {
-        //             System.out.println("Exited");
-        //         }
-        //     }
-        // });
+
+                    for(int i=0;i< gamearray.size();i++)
+                    {
+                        gamearray.get(i).shiftleft();
+                    }
+                }
+                else
+                {
+                    System.out.println("Exited");
+                }
+            }
+        });
 
         willhero=(ImageView) scene.lookup("#willhero") ;
         anchorPane=(AnchorPane) scene.lookup("#anchorPane");

@@ -19,7 +19,7 @@ public class Data {
 
 
     ArrayList<GameObject> platformObjects;
-    ArrayList<GameObject> orcsObjects;
+    ArrayList<Orc> orcsObjects;
     ArrayList<GameObject> chestObjects;
 
     Data(){
@@ -30,9 +30,9 @@ public class Data {
         
 
         platformObjects = new ArrayList<GameObject>();
-        orcsObjects = new ArrayList<GameObject>();
+        orcsObjects = new ArrayList<Orc>();
 
-        numIslands = 80;
+        numIslands = 40;
     }
 
     GameObject generate_island(String s, double x, double y){
@@ -60,7 +60,7 @@ public class Data {
     } 
 
     
-    GameObject generate_orc(String o, double x){
+    Orc generate_orc(String o, double x){
         
         int ly=220-30;
 
@@ -72,7 +72,7 @@ public class Data {
         orcs.setX(x);
         orcs.setY(ly);
 
-        GameObject orc = new Orc(orcs,x,ly,50,50);
+        Orc orc = new Orc(orcs,x,ly,50,50);
         orcsObjects.add(orc);
 
         return orc;
@@ -212,7 +212,7 @@ public class Data {
     public void setOrcsView(ArrayList<ImageView> orcsView) {
         this.orcsObjects = orcsObjects;
     }
-    public ArrayList<GameObject> getOrcsView() {
+    public ArrayList<Orc> getOrcsView() {
         return orcsObjects;
     }
     public ArrayList<GameObject> getPlatformView() {
@@ -231,7 +231,7 @@ public class Data {
 
     }
 
-    public void updateorcsView(GameObject orc){
+    public void updateorcsView(Orc orc){
         this.orcsObjects.add(orc);
 
     }
