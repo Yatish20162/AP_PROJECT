@@ -21,6 +21,8 @@ public class Data {
     ArrayList<GameObject> platformObjects;
     ArrayList<Orc> orcsObjects;
     ArrayList<GameObject> chestObjects;
+    ArrayList<Coin> coinObjects;
+
 
     Data(){
         platformList = new ArrayList<String>((Arrays.asList("Islands1.png","Islands2.png","Islands3.png","Islands4.png","Islands5.png","Islands6.png","Islands7.png","Islands8.png","Islands9.png","Islands10.png")));
@@ -31,6 +33,8 @@ public class Data {
 
         platformObjects = new ArrayList<GameObject>();
         orcsObjects = new ArrayList<Orc>();
+        coinObjects = new ArrayList<Coin>();
+
 
         numIslands = 40;
     }
@@ -76,6 +80,39 @@ public class Data {
         orcsObjects.add(orc);
 
         return orc;
+        
+    } 
+
+    Coin generate_coins(double x, double y, double val){
+        
+        double ly= 220 -  y;
+
+        Image img=new Image("Coin.png");
+        ImageView coin = new ImageView();
+
+        coin.setImage(img);
+        coin.setFitHeight(20);
+        coin.setFitWidth(20);
+        coin.setX(x);
+        coin.setY(y);
+
+        Coin orc = new Coin(coin,x,ly,(double)50, (double)50,val);
+        coinObjects.add(orc);
+
+        return orc;
+
+    //     int y= 220 - 20 - ran.nextInt(100);
+    //     for(int i=0;i<coinpicker;i++) {
+    //         Image img = new Image("Coin.png");
+    //         ImageView coin = new ImageView();
+    //         coin.setImage(img);
+    //         coin.setFitHeight(20);
+    //         coin.setFitWidth(20);
+    //         coin.setX(x+i);
+    //         coin.setY(y);
+    //         anchorPane.getChildren().add(coin);
+    //         GameObject g = new GameObject(coin, x+i, y, 50, i);
+    //         gamearray.add(g);
         
     } 
 

@@ -140,11 +140,8 @@ public class GameController {
                 //     generate_chests(c,islandGap+50);
                 // }
 
-                // if(i%5==0)
-                // {
-                //     generate_coins(islandGap+70,coinpicker);
+                addCoins(islandGap+70,220 - 20 - ran.nextInt(100));
 
-                // }
             }
             picker = ran.nextInt(10);
             orcpicker=ran.nextInt(4);
@@ -179,7 +176,6 @@ public class GameController {
                 {
                     System.out.println("Pagal hai kya???????????");
 
-
                     for(int i=0;i< data.platformObjects.size();i++)
                     {
                         data.platformObjects.get(i).shiftleft();
@@ -190,9 +186,10 @@ public class GameController {
                         data.orcsObjects.get(i).shiftleft();
                     }
 
-                    
-
-
+                    for(int i=0;i< data.coinObjects.size();i++)
+                    {
+                        data.coinObjects.get(i).shiftleft();
+                    }
                 }
                 else
                 {
@@ -223,48 +220,13 @@ public class GameController {
         anchorPane.getChildren().add(newOrc.getImg());
     }
 
-    // int generte_islansd(String s,int x)
-    // {
-    //     int y=220;
-    //     Image img=new Image(s);
-    //     ImageView island1=new ImageView();
-    //     island1.setImage(img);
-    //     island1.setFitHeight(50);
-    //     int width = 100 +  ran.nextInt(100);
-    //     island1.setFitWidth(width);
-    //     island1.setX(x);
-    //     island1.setY(y);
-    //     anchorPane.getChildren().add(island1);
-    //     GameObject g=new GameObject(island1,x,y,50, width);
-    //     gamearray.add(g);
+    void addCoins(double x, double y){
+        
+        Coin coin = data.generate_coins(x,y, ran.nextInt(10));
+        anchorPane.getChildren().add(coin.getImg());
+    }
 
-    //     data.updateplatformView(island1);
-
-    //     return width;
-    // }
-
-    // void generate_orcs(String o,int x)
-    // {
-
-    //     int y=220-30;
-    //     Image img=new Image(o);
-    //     ImageView orcs=new ImageView();
-    //     orcs.setImage(img);
-    //     orcs.setFitHeight(30);
-    //     orcs.setFitWidth(30);
-    //     orcs.setX(x);
-    //     orcs.setY(y);
-
-    //     Orc orc = new Orc(orcs,x,y,50, y);
-    //     data.updateorcsView(orcs);
-
-    //     anchorPane.getChildren().add(orcs);
-    //     GameObject g=new GameObject(orcs,x,y,50, y);
-    //     gamearray.add(g);
-
-
-    // }
-
+ 
     // void generate_chests(String c,int x)
     // {
     //     System.out.println(" chest printed ");
