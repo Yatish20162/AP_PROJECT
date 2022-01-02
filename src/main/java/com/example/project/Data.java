@@ -167,7 +167,7 @@ public class Data {
     } 
 
 
-    Boss_orc generate_boss(double x){
+    Orcs generate_boss(double x){
 
         int ly=220-30;
 
@@ -179,7 +179,7 @@ public class Data {
         orcs.setX(x);
         orcs.setY(ly);
 
-        Boss_orc orc = new Boss_orc(orcs,x,ly,50,50);
+        Orcs orc = new Boss_orc(orcs,x,ly,50,50);
         orcsObjects.add(orc);
 
         return orc;

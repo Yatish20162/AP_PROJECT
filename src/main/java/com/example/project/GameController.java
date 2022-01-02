@@ -229,7 +229,7 @@ public class GameController {
     }
 
     void addBoss(double islandGap){
-        Boss_orc newOrc = data.generate_boss(islandGap);
+        Orcs newOrc = data.generate_boss(islandGap);
         anchorPane.getChildren().add(newOrc.getImg());
     }
 
