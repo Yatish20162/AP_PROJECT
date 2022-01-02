@@ -47,6 +47,9 @@ public class GameController {
     @FXML // fx:id="coins"
     private Label coins; // Value injected by FXMLLoader
 
+    @FXML // fx:id="note"
+    private Label note; // Value injected by FXMLLoader
+
     @FXML // fx:id="willhero"
     private ImageView willhero; // Value injected by FXMLLoader
 
@@ -80,12 +83,12 @@ public class GameController {
     AnimationTimer collisoionTime=new AnimationTimer() {
         @Override
         public void handle(long timestamp) {
-            checkCollisions(willhero,data.getOrcsView(),data.getPlatformView(),data.getCoinObjects(),data.getCoinObjects(), data.getChestObjects());
+            checkCollisions(willhero,data.getOrcsView(),data.getPlatformView(),data.getCoinObjects(),data.getCoinObjects(), data.getChestObjects(), data.getObstruction());
             //System.out.println(";oll");
         }
     };
 
-    void checkCollisions(ImageView heroImg,ArrayList<Orcs> orcsview,ArrayList<GameObject> img,ArrayList<Coin> coinsview, ArrayList<Coin> arrayList, ArrayList<Chest> chestview)
+    void checkCollisions(ImageView heroImg,ArrayList<Orcs> orcsview,ArrayList<GameObject> img,ArrayList<Coin> coinsview, ArrayList<Coin> arrayList, ArrayList<Chest> chestview, ArrayList<TNT> obstructions)
     {
         for(int i=0;i<img.size();i++)
         {
@@ -101,6 +104,8 @@ public class GameController {
                     orcsview.get(j).upp_steps = 50;
                 }
             }
+
+         
 
             for(int j=0;j< coinsview.size();j++) {
                 if (heroImg.getBoundsInParent().intersects(coinsview.get(j).getImg().getBoundsInParent())) {
@@ -132,6 +137,25 @@ public class GameController {
 
                     chestview.get(j).getImg().setImage(whichone);
                    
+                }
+            }
+
+            for(int j=0;j<obstructions.size();j++){
+               
+                if (obstructions.get(j).getImg().getBoundsInParent().intersects(heroImg.getBoundsInParent())) {
+                    System.out.println("TNT TNTTNTTNTTNTTNTTNTTNTTNTTNTTNTTNTTNTTNTTNTTNTTNT TNTTNTTNTTNTTNT COLLIDED");
+
+                    Image  whichlone = new Image("TNT_Explode.png");
+
+                    obstructions.get(j).getImg().setImage(whichlone);
+
+                    hero.updateHealth(obstructions.get(j).getEffect());
+
+                    note.setText("H: " + Double.toString( hero.getHealth()));
+
+                    obstructions.get(j).setEffect(0);
+
+
                 }
             }
         }
@@ -177,10 +201,15 @@ public class GameController {
                 {
                     addChest(islandGap);
                 }
+
+                if(chestgetter>30){
+                    addTNT(islandGap);
+                }
                 
                 if(i%5==0){
                     addCoins(islandGap+70,220 - 20 - ran.nextInt(100));
                 }
+
             }
 
             if(i == numIslands-3){
@@ -226,6 +255,11 @@ public class GameController {
                     
                 }
 
+                if(hero.getHealth() <= 6){
+                    System.out.println("Low Health!!!!!!!!!!!!!!!!!");
+
+                }
+
             }
         };
 
@@ -246,7 +280,9 @@ public class GameController {
                 {
                     System.out.println("Pagal hai kya???????????");
 
-                    for(int i=0;i< data.platformObjects.size();i++)
+                    
+
+                    for(int i=0;i < data.platformObjects.size();i++)
                     {
                         data.platformObjects.get(i).shiftleft();
                     }
@@ -266,6 +302,11 @@ public class GameController {
                         data.chestObjects.get(i).shiftleft();
                     }
 
+                    for(int i=0; i < data.getObstruction().size();i++)
+                    {
+                        data.getObstruction().get(i).shiftleft();
+                    }
+
 
                 }
                 else
@@ -282,6 +323,8 @@ public class GameController {
 
         willhero=(ImageView) scene.lookup("#willhero") ;
         coins=(Label) scene.lookup("#coins") ;
+        note=(Label) scene.lookup("#note") ;
+
 
         anchorPane=(AnchorPane) scene.lookup("#anchorPane");
 
@@ -303,6 +346,11 @@ public class GameController {
 
     void addBoss(double islandGap){
         Orcs newOrc = data.generate_boss(islandGap);
+        anchorPane.getChildren().add(newOrc.getImg());
+    }
+
+    void addTNT(double x){
+        TNT newOrc = data.generate_tnt(x);
         anchorPane.getChildren().add(newOrc.getImg());
     }
 

@@ -22,6 +22,8 @@ public class Data {
     ArrayList<Orcs> orcsObjects;
     ArrayList<Chest> chestObjects;
     ArrayList<Coin> coinObjects;
+    ArrayList<TNT> obstruction;
+
 
 
     Data(){
@@ -35,6 +37,8 @@ public class Data {
         orcsObjects = new ArrayList<Orcs>();
         coinObjects = new ArrayList<Coin>();
         chestObjects = new ArrayList<Chest>();
+        obstruction = new ArrayList<TNT>();
+
 
 
         numIslands = 40;
@@ -104,6 +108,28 @@ public class Data {
         
     } 
 
+
+    TNT generate_tnt( double x){
+        
+        double ly=220-30;
+
+        Image img=new Image("TNT.png");
+        ImageView orcs = new ImageView();
+        orcs.setImage(img);
+        orcs.setFitHeight(30);
+        orcs.setFitWidth(30);
+        orcs.setX(x);
+        orcs.setY(ly);
+
+        Range r = new Range(40,40);
+
+        TNT orc = new TNT(orcs,x,ly,(double)50,(double)50,r,2);
+        obstruction.add(orc);
+
+        return orc;
+        
+    } 
+
     Coin generate_coins(double x, double y, double val){
         
         double ly= 220 -  y;
@@ -153,8 +179,6 @@ public class Data {
             return cch;
         }       
     }
-
-    
 
 
     public ArrayList<String> getPlatformList() {
@@ -226,5 +250,16 @@ public class Data {
     public void setChestObjects(ArrayList<Chest> chestObjects) {
         this.chestObjects = chestObjects;
     }
+
+
+
+    public ArrayList<TNT> getObstruction() {
+        return obstruction;
+    }
+
+    public void setObstruction(ArrayList<TNT> obstruction) {
+        this.obstruction = obstruction;
+    }
+    
     
 }

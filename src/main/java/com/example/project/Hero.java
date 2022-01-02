@@ -15,6 +15,7 @@ public class Hero extends Living{
     String name;
     double score;
     double coins;
+    double health;
 
     int upp_steps=0;
 
@@ -38,6 +39,8 @@ public class Hero extends Living{
         ));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
+
+        this.health = 20.0;
 
     }
 
@@ -66,6 +69,21 @@ public class Hero extends Living{
     }
     public double getScore() {
         return score;
+    }
+
+    public void setHealth(double health) {
+        this.health = health;
+    }
+
+    public void updateHealth(double health) {
+        this.health-= health;
+    }
+
+    
+
+
+    public double getHealth() {
+        return health;
     }
 
 
